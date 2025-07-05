@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://nvv80eibas3w"]
+
+[ext_resource type="Script" uid="uid://btq0g5d4exdyh" path="res://Bullet/bullet_.gd" id="1_odpsv"]
+
+[node name="bullet_" type="Node"]
+script = ExtResource("1_odpsv")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Actual" type="Area2D" parent="."]

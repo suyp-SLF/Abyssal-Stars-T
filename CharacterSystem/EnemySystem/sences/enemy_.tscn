@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dge0hsj3xs1bj"]
+
+[ext_resource type="PackedScene" uid="uid://b1k8ixchp7xra" path="res://CharacterSystem/character_.tscn" id="1_fd787"]
+[ext_resource type="Script" uid="uid://ci53p7wadk42t" path="res://CharacterSystem/EnemySystem/scripts/enemy_normal.gd" id="1_ocgc1"]
+[ext_resource type="Script" uid="uid://bh64w5rbs0dt7" path="res://Behavior/EnemyAIComponent.gd" id="2_fd787"]
+[ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="3_xmjw2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmjw2"]
+size = Vector2(12, 12)
+
+[node name="enemy_" instance=ExtResource("1_fd787")]
+script = ExtResource("1_ocgc1")
+
+[node name="Collisions#Area2D" type="Area2D" parent="." index="0"]
+
+[node name="Collisions_Area2D#CollisionShape2D" type="CollisionShape2D" parent="Collisions#Area2D" index="0"]
+shape = SubResource("RectangleShape2D_xmjw2")
+debug_color = Color(0.983612, 0, 0.351403, 0.42)
+
+[node name="Sprites#Sprite2D" type="Sprite2D" parent="." index="1"]
+visible = false
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_xmjw2")
+
+[node name="EnemyAIComponent" type="Node" parent="Components" index="0"]
+script = ExtResource("2_fd787")

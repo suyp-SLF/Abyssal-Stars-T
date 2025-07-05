@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://blpiw5pyuyrje"]
+
+[ext_resource type="Script" uid="uid://cqqa22xorsuv7" path="res://ComponentSystem/Detect/component_detect.gd" id="1_rgmdf"]
+[ext_resource type="PackedScene" uid="uid://bxbr724g4pr0f" path="res://ComponentSystem/Detect/radar.tscn" id="2_rgmdf"]
+
+[node name="ComponentDetect" type="Node2D" node_paths=PackedStringArray("action")]
+script = ExtResource("1_rgmdf")
+action = NodePath("radar")
+
+[node name="radar" parent="." instance=ExtResource("2_rgmdf")]

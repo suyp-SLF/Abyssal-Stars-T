@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8v67q05tissk"]
+
+[ext_resource type="Script" uid="uid://b0ukjxi682qvh" path="res://UISystem/scripts/UI_player_button.gd" id="1_07jiq"]
+[ext_resource type="Theme" uid="uid://bpvprkvy2uy8a" path="res://UISystem/theme/theme.tres" id="2_qej0y"]
+
+[node name="PlayerBtn" type="Button"]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = -1
+anchor_right = 0.121
+anchor_bottom = 0.185
+offset_right = -0.320007
+offset_bottom = 0.199997
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_07jiq")
+
+[node name="PlayerInfo" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+theme = ExtResource("2_qej0y")
+
+[node name="name" type="HBoxContainer" parent="PlayerInfo"]
+layout_mode = 2
+
+[node name="name" type="Label" parent="PlayerInfo/name"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "name"
+
+[node name="value" type="Label" parent="PlayerInfo/name"]
+layout_mode = 2
+text = "xx"
+
+[node name="health" type="HBoxContainer" parent="PlayerInfo"]
+layout_mode = 2
+
+[node name="health" type="Label" parent="PlayerInfo/health"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "生命"
+
+[node name="value" type="Label" parent="PlayerInfo/health"]
+layout_mode = 2
+text = "xx"
+
+[node name="speed" type="HBoxContainer" parent="PlayerInfo"]
+layout_mode = 2
+
+[node name="speed" type="Label" parent="PlayerInfo/speed"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "速度"
+
+[node name="value" type="Label" parent="PlayerInfo/speed"]
+layout_mode = 2
+text = "xx"

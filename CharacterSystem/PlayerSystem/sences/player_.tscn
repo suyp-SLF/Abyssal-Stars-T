@@ -1,0 +1,123 @@
+[gd_scene load_steps=16 format=3 uid="uid://4hpef26n820i"]
+
+[ext_resource type="PackedScene" uid="uid://b1k8ixchp7xra" path="res://CharacterSystem/character_.tscn" id="1_jr3c0"]
+[ext_resource type="Texture2D" uid="uid://f8yxuhqdaj06" path="res://CharacterSystem/PlayerSystem/config/tilemap-characters.png" id="2_8ol7i"]
+[ext_resource type="Script" uid="uid://calfqp3h7pcih" path="res://CharacterSystem/PlayerSystem/scripts/player_.gd" id="2_ilsb1"]
+[ext_resource type="Shader" uid="uid://bw27d7lbq3cbl" path="res://Shader/health_bar.gdshader" id="3_2sx5r"]
+[ext_resource type="Script" uid="uid://dvx0ix8r3acwn" path="res://CharacterSystem/PlayerSystem/flame/Flame.gd" id="5_dc00g"]
+[ext_resource type="Shader" uid="uid://d2f0b81ohxaae" path="res://Shader/circle.gdshader" id="6_q8aro"]
+[ext_resource type="Texture2D" uid="uid://delh8bmod76br" path="res://CharacterSystem/PlayerSystem/scripts/WechatIMG147.jpg" id="6_thewl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sn3pd"]
+shader = ExtResource("3_2sx5r")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/health = 0.8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2sx5r"]
+shader = ExtResource("6_q8aro")
+shader_parameter/ring_color = Color(1, 0, 0, 0.203922)
+shader_parameter/inner_radius = 0.46
+shader_parameter/outer_radius = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g1qk"]
+atlas = ExtResource("2_8ol7i")
+region = Rect2(25, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8svjd"]
+atlas = ExtResource("2_8ol7i")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1580"]
+atlas = ExtResource("2_8ol7i")
+region = Rect2(25, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yc6o"]
+atlas = ExtResource("2_8ol7i")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86j4t"]
+atlas = ExtResource("2_8ol7i")
+region = Rect2(25, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_njdou"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g1qk")
+}],
+"loop": true,
+"name": &"FALL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8svjd")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1580")
+}],
+"loop": true,
+"name": &"JUMP",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yc6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86j4t")
+}],
+"loop": true,
+"name": &"WALK",
+"speed": 5.0
+}]
+
+[node name="player_" instance=ExtResource("1_jr3c0")]
+z_index = 1
+script = ExtResource("2_ilsb1")
+P_name = "Player"
+P_health = 100.0
+P_speed = 1
+state = 1
+jet = 2
+
+[node name="health" type="ColorRect" parent="Visual" index="0"]
+material = SubResource("ShaderMaterial_sn3pd")
+offset_left = -12.0
+offset_top = 1.0
+offset_right = 15.0
+offset_bottom = 6.0
+
+[node name="circle" type="ColorRect" parent="Visual" index="1"]
+material = SubResource("ShaderMaterial_2sx5r")
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 150.0
+scale = Vector2(1, 0.5)
+
+[node name="Sprites#CharacterSprite" type="AnimatedSprite2D" parent="Visual" index="2"]
+position = Vector2(1, -12)
+sprite_frames = SubResource("SpriteFrames_njdou")
+animation = &"FALL"
+autoplay = "WALK"
+frame_progress = 0.438354
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual" index="3"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_thewl")
+
+[node name="Sprites#VFX" type="Node2D" parent="Visual" index="4"]
+rotation = 0.00672642
+
+[node name="Flame" type="GPUParticles2D" parent="Visual/Sprites#VFX" index="0"]
+rotation = 1.5708
+visibility_rect = Rect2(15, 7, 2, 2)
+script = ExtResource("5_dc00g")
+max_particles = 300
+flame_length = 1.0

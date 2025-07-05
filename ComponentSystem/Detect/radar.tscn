@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxbr724g4pr0f"]
+
+[ext_resource type="PackedScene" uid="uid://dfjcgloqli4di" path="res://ComponentSystem/action_.tscn" id="1_uahfb"]
+[ext_resource type="Script" uid="uid://cxpow5ujvl4fm" path="res://ComponentSystem/Detect/radar.gd" id="2_vduqb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vduqb"]
+radius = 250.0
+
+[node name="action_" node_paths=PackedStringArray("area") instance=ExtResource("1_uahfb")]
+script = ExtResource("2_vduqb")
+area = NodePath("Actual/area")
+
+[node name="area" type="Area2D" parent="Actual" index="0"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actual/area" index="0"]
+shape = SubResource("CircleShape2D_vduqb")
+debug_color = Color(0, 0.7, 0.571667, 0.2)

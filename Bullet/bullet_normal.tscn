@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxio0i2ytdjdu"]
+
+[ext_resource type="PackedScene" uid="uid://nvv80eibas3w" path="res://Bullet/bullet_.tscn" id="1_8kt8t"]
+[ext_resource type="Script" uid="uid://c6kldrtu2ortp" path="res://Bullet/bullet_normal.gd" id="1_kr02x"]
+
+[node name="bullet_" instance=ExtResource("1_8kt8t")]
+script = ExtResource("1_kr02x")
+
+[node name="Line2D" type="Line2D" parent="Visual" index="0"]
+points = PackedVector2Array(0, 0, 25, 0)
+width = 4.0
+default_color = Color(1, 0.8, 0.2, 1)
+
+[node name="RayCast2D" type="RayCast2D" parent="Actual" index="0"]
+rotation = -1.5708
+target_position = Vector2(0, 25)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Lifetime" type="Timer" parent="." index="2"]

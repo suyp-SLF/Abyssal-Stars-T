@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cf6t8bmmghk52"]
+
+[ext_resource type="Script" uid="uid://8b6p8njsepq1" path="res://GunSystem/Guns/scripts/Gun.gd" id="1_rvito"]
+[ext_resource type="Texture2D" uid="uid://it7xeqs462im" path="res://MapSystem/res/tilemap_packed.png" id="2_5mmra"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ej7w"]
+atlas = ExtResource("2_5mmra")
+region = Rect2(126, 54, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lymsy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ej7w")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lymsy"]
+atlas = ExtResource("2_5mmra")
+region = Rect2(126, 126, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cbny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lymsy")
+}],
+"loop": true,
+"name": &"RAY",
+"speed": 5.0
+}]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_rvito")
+
+[node name="GunSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lymsy")
+animation = &"IDLE"
+autoplay = "IDLE"
+frame_progress = 0.6114
+
+[node name="MuzzleFlash" type="AnimatedSprite2D" parent="."]
+position = Vector2(25, 0)
+sprite_frames = SubResource("SpriteFrames_5cbny")
+animation = &"RAY"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-1.43051e-06, 0)
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+z_index = 11
+position = Vector2(44, 0)
+width = 99.0

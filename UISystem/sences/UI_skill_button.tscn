@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://btxd7vy5emb30"]
+
+[ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="1_kfro3"]
+[ext_resource type="Shader" uid="uid://d2v4p8vfru36c" path="res://Shader/highlight.gdshader" id="1_lpk3h"]
+[ext_resource type="Script" uid="uid://c1qk406w4jq4f" path="res://UISystem/scripts/UI_skill_button.gd" id="2_jcuw6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpk3h"]
+shader = ExtResource("1_lpk3h")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.7
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+
+[node name="Button" type="Button"]
+clip_children = 2
+icon = ExtResource("1_kfro3")
+script = ExtResource("2_jcuw6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_lpk3h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

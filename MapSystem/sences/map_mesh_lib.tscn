@@ -1,0 +1,111 @@
+[gd_scene load_steps=22 format=3 uid="uid://ibn1mpdumo4r"]
+
+[ext_resource type="ArrayMesh" uid="uid://cqrlyc80ufvxs" path="res://MapSystem/res/OBJ format/air-hockey.obj" id="1_51bha"]
+[ext_resource type="ArrayMesh" uid="uid://dk8t0rc3483lr" path="res://MapSystem/res/OBJ format/arcade-machine.obj" id="2_aj0kf"]
+[ext_resource type="ArrayMesh" uid="uid://d0xiwcmrax4g3" path="res://MapSystem/res/OBJ format/basketball-game.obj" id="3_6m0oq"]
+[ext_resource type="ArrayMesh" uid="uid://di46more3ftbu" path="res://MapSystem/res/OBJ format/cash-register.obj" id="4_u6bhd"]
+[ext_resource type="ArrayMesh" uid="uid://c6e533s3g1cvi" path="res://MapSystem/res/OBJ format/character-employee.obj" id="5_b1j8h"]
+[ext_resource type="ArrayMesh" uid="uid://vuyigmydo1y0" path="res://MapSystem/res/OBJ format/character-gamer.obj" id="6_iw1ub"]
+[ext_resource type="ArrayMesh" uid="uid://xyycd4o6p6fj" path="res://MapSystem/res/OBJ format/claw-machine.obj" id="7_i3lsk"]
+[ext_resource type="ArrayMesh" uid="uid://ifojr02gpt1a" path="res://MapSystem/res/OBJ format/column.obj" id="8_ov5hp"]
+[ext_resource type="ArrayMesh" uid="uid://cbgv13foyg4pq" path="res://MapSystem/res/OBJ format/dance-machine.obj" id="9_ulsrq"]
+[ext_resource type="ArrayMesh" uid="uid://d1yfk765k30av" path="res://MapSystem/res/OBJ format/floor.obj" id="10_m8w04"]
+[ext_resource type="ArrayMesh" uid="uid://cvfy37dbx2tqb" path="res://MapSystem/res/OBJ format/gambling-machine.obj" id="11_hwd0b"]
+[ext_resource type="ArrayMesh" uid="uid://bx5kgb3imv0xw" path="res://MapSystem/res/OBJ format/pinball.obj" id="12_ctal6"]
+[ext_resource type="ArrayMesh" uid="uid://bchh55rve75pr" path="res://MapSystem/res/OBJ format/prize-wheel.obj" id="13_yfg4k"]
+[ext_resource type="ArrayMesh" uid="uid://bogt32dq5dwfb" path="res://MapSystem/res/OBJ format/prizes.obj" id="14_vbyyc"]
+[ext_resource type="ArrayMesh" uid="uid://csl2uh0j15gwv" path="res://MapSystem/res/OBJ format/ticket-machine.obj" id="15_yrskm"]
+[ext_resource type="ArrayMesh" uid="uid://d03u78v68m63k" path="res://MapSystem/res/OBJ format/vending-machine.obj" id="16_eoet7"]
+[ext_resource type="ArrayMesh" uid="uid://3awu1xwpku6y" path="res://MapSystem/res/OBJ format/wall-corner.obj" id="17_go5hq"]
+[ext_resource type="ArrayMesh" uid="uid://ctjvan5snyivj" path="res://MapSystem/res/OBJ format/wall-door-rotate.obj" id="18_51d47"]
+[ext_resource type="ArrayMesh" uid="uid://bbuwf52fd0wi2" path="res://MapSystem/res/OBJ format/wall-window.obj" id="19_yscg4"]
+[ext_resource type="ArrayMesh" uid="uid://djfq7jwwxbl67" path="res://MapSystem/res/OBJ format/wall.obj" id="20_t188y"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_51bha"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.025, -0.5, 0.5, 0, -0.5, -0.5, 0.025, 0, 0.5, 0, 0.5, 0, 0.025, 0.5, 0, 0.025, -0.5, 0.5, 0.025, 0, 0.5, 0.025, 0.5)
+
+[node name="MapMeshLib" type="Node3D"]
+
+[node name="Air-hockey" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("1_51bha")
+
+[node name="Arcade-machine" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("2_aj0kf")
+
+[node name="Basketball-game" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("3_6m0oq")
+
+[node name="Cash-register" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("4_u6bhd")
+
+[node name="Character-employee" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("5_b1j8h")
+
+[node name="Character-gamer" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("6_iw1ub")
+
+[node name="Claw-machine" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("7_i3lsk")
+
+[node name="Column" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("8_ov5hp")
+
+[node name="Dance-machine" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("9_ulsrq")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = ExtResource("10_m8w04")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_51bha")
+
+[node name="Gambling-machine" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("11_hwd0b")
+
+[node name="Pinball" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("12_ctal6")
+
+[node name="Prize-wheel" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("13_yfg4k")
+
+[node name="Prizes" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("14_vbyyc")
+
+[node name="Ticket-machine" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("15_yrskm")
+
+[node name="Vending-machine" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("16_eoet7")
+
+[node name="Wall-corner" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("17_go5hq")
+
+[node name="Wall-door-rotate" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("18_51d47")
+
+[node name="Wall-window" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("19_yscg4")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("20_t188y")
