@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bftu0amoneuk6" path="res://ComponentSystem/component_healthy.gd" id="1_d2hpq"]
 [ext_resource type="PackedScene" uid="uid://ber7njnw6uule" path="res://ComponentSystem/component_.tscn" id="1_polts"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewid7"]
-radius = 48.0
-height = 96.0
+[ext_resource type="PackedScene" uid="uid://bor41255t1pda" path="res://Collsions/Collsion_.tscn" id="3_vboba"]
 
 [node name="ComponentHealthy" instance=ExtResource("1_polts")]
 script = ExtResource("1_d2hpq")
@@ -14,8 +11,4 @@ current_healthy = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Visual" index="0"]
 
-[node name="Area2D" type="Area2D" parent="Actual" index="0"]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actual/Area2D" index="0"]
-shape = SubResource("CapsuleShape2D_ewid7")
+[node name="Area2D" parent="Actual" index="0" instance=ExtResource("3_vboba")]

@@ -6,6 +6,7 @@ extends Node
 var entity: Node2D
 @onready var visual: Node2D = $Visual
 @onready var actual: Node2D = $Actual
+@onready var components: Node2D = $Components
 
 func _ready() -> void:
 	print(name + "通用组件加载--组件连接父节点")

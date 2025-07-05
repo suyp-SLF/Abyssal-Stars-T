@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://tpi5h3hf7q5v"]
+
+[ext_resource type="PackedScene" uid="uid://bor41255t1pda" path="res://Collsions/Collsion_.tscn" id="1_v0u14"]
+
+[node name="Area2D" instance=ExtResource("1_v0u14")]
