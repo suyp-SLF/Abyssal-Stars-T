@@ -17,9 +17,9 @@ func _execute(delta: float) -> void:
 	 # 持续获取重叠的 Area2D
 	var overlapping_areas = area.get_overlapping_areas()
 	for area in overlapping_areas:
-		
-		print("当前重叠的 Area2D:", area.name)
-		# 绘制雷达效果（可选）
+		if (not area.entity.P_name == "Player"):
+			print("当前重叠的 Area2D:", area.name)
+			# 绘制雷达效果（可选）
 	_draw()
 	
 func _draw():

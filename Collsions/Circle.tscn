@@ -1,5 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://tpi5h3hf7q5v"]
+[gd_scene load_steps=3 format=3 uid="uid://tpi5h3hf7q5v"]
 
-[ext_resource type="PackedScene" uid="uid://bor41255t1pda" path="res://Collsions/Collsion_.tscn" id="1_v0u14"]
+[ext_resource type="PackedScene" uid="uid://bor41255t1pda" path="res://Collsions/collsion_.tscn" id="1_t4fg0"]
 
-[node name="Area2D" instance=ExtResource("1_v0u14")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0u14"]
+radius = 100.0
+
+[node name="Area2D" instance=ExtResource("1_t4fg0")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_v0u14")

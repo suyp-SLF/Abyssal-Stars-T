@@ -39,7 +39,7 @@ func _ready() -> void:
 	
 	layer0.update_internals()
 	var player1 = CONTROLLER_PLAYER.createPlayer("normal", 0, Vector2i(0, 0))
-	var player2 = CONTROLLER_PLAYER.createPlayer("normal", 0, Vector2i(10, 100))
+	var player2 = CONTROLLER_PLAYER.createPlayer("normal", 0, Vector2i(10, 10))
 	
 	var detect_c1 = utils_component.init_detect_component()
 	var health_c1 = utils_component.init_healthy_component()
