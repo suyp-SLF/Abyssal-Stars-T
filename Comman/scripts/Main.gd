@@ -41,6 +41,8 @@ func _ready() -> void:
 	var player1 = CONTROLLER_PLAYER.createPlayer("normal", 0, Vector2i(0, 0))
 	var player2 = CONTROLLER_PLAYER.createPlayer("normal", 0, Vector2i(10, 10))
 	
+	var enemy1 = CONTROLLER_ENEMY.createEnemy("normal", 0, Vector2i(5, 10))
+	
 	var detect_c1 = utils_component.init_detect_component()
 	var health_c1 = utils_component.init_healthy_component()
 	utils_component.add_component(player2, detect_c1)
@@ -71,8 +73,9 @@ func controllers_config():
 	CONTROLLER_PLAYER.set_path_config("res://CharacterSystem/PlayerSystem/config.cfg")
 	CONTROLLER_PLAYER.set_path_sences("res://CharacterSystem/PlayerSystem/sences.cfg")
 	
-	enemy_controller.controller_code = "enemy"
-	enemy_controller.set_path_config("")
+	CONTROLLER_ENEMY.controller_code = "enemy"
+	CONTROLLER_ENEMY.set_path_config("res://CharacterSystem/PlayerSystem/config.cfg")
+	CONTROLLER_ENEMY.set_path_sences("res://CharacterSystem/PlayerSystem/sences.cfg")
 	
 	camera_controller.controller_code = "camera"
 	camera_controller.set_path_config("")

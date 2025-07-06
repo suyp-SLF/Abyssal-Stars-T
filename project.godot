@@ -28,12 +28,18 @@ UtilsSence="*res://Comman/utils/utils_sence.gd"
 G_Environment="*res://Comman/scripts/Environment.gd"
 CONTROLLER_MAP="*res://MapSystem/controller_map.gd"
 CONTROLLER_PLAYER="*res://CharacterSystem/PlayerSystem/controller_player.gd"
+CONTROLLER_ENEMY="*res://CharacterSystem/EnemySystem/controller_enemy.gd"
 CONTROLLER_CAMERA="*res://CameraSystem/controller_camera.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 

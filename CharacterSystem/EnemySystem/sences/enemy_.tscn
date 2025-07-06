@@ -10,6 +10,11 @@ size = Vector2(12, 12)
 
 [node name="enemy_" instance=ExtResource("1_fd787")]
 script = ExtResource("1_ocgc1")
+P_name = "Player"
+P_health = 100.0
+P_speed = 1
+state = 1
+jet = 2
 
 [node name="Collisions#Area2D" type="Area2D" parent="." index="0"]
 
@@ -18,7 +23,6 @@ shape = SubResource("RectangleShape2D_xmjw2")
 debug_color = Color(0.983612, 0, 0.351403, 0.42)
 
 [node name="Sprites#Sprite2D" type="Sprite2D" parent="." index="1"]
-visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_xmjw2")
 
