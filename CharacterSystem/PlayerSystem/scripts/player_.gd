@@ -7,6 +7,7 @@ extends character_
 @export var P_name: String = "Player"
 @export var P_health: float = 100
 @export var P_speed: int = 1
+@export var P_tag: String = "Player"
 
 
 #角色状态

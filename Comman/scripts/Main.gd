@@ -43,6 +43,11 @@ func _ready() -> void:
 	
 	var enemy1 = CONTROLLER_ENEMY.createEnemy("normal", 0, Vector2i(5, 10))
 	
+	var detect_c2 = utils_component.init_detect_component()
+	var health_c2 = utils_component.init_healthy_component()
+	utils_component.add_component(enemy1, detect_c2)
+	utils_component.add_component(enemy1, health_c2)
+	
 	var detect_c1 = utils_component.init_detect_component()
 	var health_c1 = utils_component.init_healthy_component()
 	utils_component.add_component(player2, detect_c1)

@@ -26,6 +26,7 @@ func createEnemy(type: String, layernum: int, coord: Vector2i) -> CharacterBody2
 	var player_ = utils_sence.get_instance().getSence(controller_code, path_sences, "player_base")
 	# 实例化场景
 	var instance_player = player_.instantiate()
+	instance_player.P_tag = "enemy"
 	instance_player.set_position(position)
 	if not config == {}:
 		instance_player.setup(config)
