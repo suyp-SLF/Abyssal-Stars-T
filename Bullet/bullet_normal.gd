@@ -24,5 +24,5 @@ func _handle_collision(hit_pos: Vector2, target: Object):
 		"event_id": "FB", 
 		"hit_pos": hit_pos})
 	# 碰撞后立即消失或可以添加命中效果
-	print(str(target.get_instance_id()) + "被攻击")
+	print(str(target.entity.P_tag) + "被攻击")
 	queue_free()
