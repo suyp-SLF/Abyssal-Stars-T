@@ -328,11 +328,6 @@ script = ExtResource("9_rsc2q")
 [node name="Enemy" parent="Environment/EnemyController" instance=ExtResource("13_pf7xi")]
 z_index = 1
 position = Vector2(308, -122)
-P_name = "Player"
-P_health = 100.0
-P_speed = 1
-state = 1
-jet = 2
 
 [node name="MapController" type="Node2D" parent="Environment"]
 y_sort_enabled = true
