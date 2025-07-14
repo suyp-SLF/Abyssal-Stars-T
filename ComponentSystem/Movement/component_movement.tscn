@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqlmi4v2ifs4a"]
+[gd_scene load_steps=4 format=3 uid="uid://dqlmi4v2ifs4a"]
 
 [ext_resource type="Script" uid="uid://dengrs0ch6vls" path="res://ComponentSystem/Movement/component_movement.gd" id="1_vrles"]
 [ext_resource type="Script" uid="uid://d0t51s3c4ldv6" path="res://ComponentSystem/Movement/controller.gd" id="2_3mp1v"]
+[ext_resource type="Script" uid="uid://bn36aab2yupwm" path="res://ComponentSystem/Movement/follow.gd" id="3_24lw1"]
 
 [node name="ComponentMovement" type="Node" node_paths=PackedStringArray("action")]
 script = ExtResource("1_vrles")
-action = NodePath("controller")
+action = NodePath("follow")
 
 [node name="controller" type="Node" parent="."]
 script = ExtResource("2_3mp1v")
+
+[node name="follow" type="Node" parent="."]
+script = ExtResource("3_24lw1")

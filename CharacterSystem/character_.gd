@@ -10,6 +10,9 @@ const JUMP_VELOCITY = -400.0
 @onready var components: Node2D = $Components
 @onready var actual: Node2D = $Actual
 @onready var visual: Node2D = $Visual
+#其他信息
+@export var move_target: Vector2 = Vector2(0, 0)
+@export var attack_taeget: Vector2 = Vector2(0, 0)
 
 func _ready():
 	# 配置视觉元素
