@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://btxd7vy5emb30"]
+[gd_scene load_steps=4 format=3 uid="uid://btxd7vy5emb30"]
 
-[ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="1_kfro3"]
 [ext_resource type="Shader" uid="uid://d2v4p8vfru36c" path="res://Shader/highlight.gdshader" id="1_lpk3h"]
 [ext_resource type="Script" uid="uid://c1qk406w4jq4f" path="res://UISystem/scripts/UI_skill_button.gd" id="2_jcuw6"]
 
@@ -19,7 +18,14 @@ shader_parameter/Alpha = 1.0
 
 [node name="Button" type="Button"]
 clip_children = 2
-icon = ExtResource("1_kfro3")
+anchors_preset = -1
+anchor_right = 0.078
+anchor_bottom = 0.138
+offset_left = 5.0
+offset_top = -4.0
+offset_right = 4.23999
+offset_bottom = -0.0400085
+text = "技能1"
 script = ExtResource("2_jcuw6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -28,5 +34,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -4.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2

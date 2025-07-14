@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://ciovvt2xjx142"]
+[gd_scene load_steps=61 format=4 uid="uid://ciovvt2xjx142"]
 
 [ext_resource type="Script" uid="uid://byfjo2d33kpkp" path="res://Comman/scripts/Main.gd" id="1_3emcu"]
 [ext_resource type="Script" uid="uid://b5waj2e4wqtrx" path="res://UISystem/controller_UI.gd" id="2_l603a"]
@@ -10,7 +10,6 @@
 [ext_resource type="Shader" uid="uid://bkl46r36pjrsj" path="res://Shader/liquid_sphere_v2.gdshader" id="6_k1ek1"]
 [ext_resource type="Script" uid="uid://b41vebs8ruviq" path="res://CharacterSystem/PlayerSystem/controller_player.gd" id="7_ace6p"]
 [ext_resource type="Shader" uid="uid://dpuucbgpdh0aq" path="res://Shader/radial_fire.gdshader" id="7_k1ek1"]
-[ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="9_algus"]
 [ext_resource type="Script" uid="uid://cq5xu6dmoswvs" path="res://MouseSystem/controller_mouse.gd" id="9_d8fua"]
 [ext_resource type="Script" uid="uid://dja6m5qp3n6c5" path="res://CharacterSystem/EnemySystem/controller_enemy.gd" id="9_rsc2q"]
 [ext_resource type="TileSet" uid="uid://ubpdr2jfl6rk" path="res://MapSystem/res/new_tile_set.tres" id="10_f6k2u"]
@@ -548,9 +547,8 @@ grow_vertical = 0
 [node name="Button" parent="UI/Control/SkillList" instance=ExtResource("4_2g28e")]
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="UI/Control/SkillList"]
+[node name="Button2" parent="UI/Control/SkillList" instance=ExtResource("4_2g28e")]
 layout_mode = 2
-icon = ExtResource("9_algus")
 
 [node name="Water" type="ColorRect" parent="UI/Control"]
 material = SubResource("ShaderMaterial_k1ek1")
