@@ -60,3 +60,7 @@ func addLabel(player: player_):
 func _on_h_slider_value_changed(value: float) -> void:
 	G_Environment.VISUAL_SCALE = value
 	pass # Replace with function body.
+
+func _on_option_button_item_selected(index: int) -> void:
+	G_Environment.movement_action = index
+	pass # Replace with function body.

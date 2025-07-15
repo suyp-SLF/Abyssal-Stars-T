@@ -1,11 +1,13 @@
 extends Node2D
 
-@export var VISUAL_SCALE = 1.0  # 标准2:1等距的y轴压缩
+@export var VISUAL_SCALE = 1.0  				# 标准2:1等距的y轴压缩
 @export var VISUAL_ROTATION = 45            # 标准等距旋转角度
 
 @export var layer: TileMapLayer = null
 @export var player: CharacterBody2D = null
 @export var camera: Camera2D = null
+#移动信息
+@export var movement_action: int = 0
 
 func set_layer(layer: TileMapLayer) -> void:
 	CONTROLLER_MAP.set_curr_layer(layer)
