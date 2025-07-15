@@ -12,6 +12,7 @@ class_name MovementComponent
 @export var action: action_
 
 func _ready_after() -> void:
+	component_name = "component_movement"
 	print(name + "移动组件加载")
 
 func _physics_process(delta: float) -> void:

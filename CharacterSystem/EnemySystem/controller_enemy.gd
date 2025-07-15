@@ -18,7 +18,7 @@ func _MOUSE_EVENT(type: String, position: Vector2) -> void:
 	pass
 		
 #创建角色	
-func createEnemy(type: String, layernum: int, coord: Vector2i) -> CharacterBody2D:
+func createEnemy(type: String, layernum: int, coord: Vector2i) -> character_:
 	var position: Vector2 = CONTROLLER_MAP.map_to_local(coord)
 	var curr_layer = CONTROLLER_MAP.get_layer_by_num(layernum);
 	var config = getEnemyConfig(type)

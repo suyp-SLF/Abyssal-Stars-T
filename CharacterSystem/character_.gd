@@ -7,6 +7,9 @@ const JUMP_VELOCITY = -400.0
 @export var visual_pos = Vector2(0,0)
 @export var actual_pos = Vector2(0,0)
 
+#组件遍历树
+@onready var component_dict: Dictionary
+
 @onready var components: Node2D = $Components
 @onready var actual: Node2D = $Actual
 @onready var visual: Node2D = $Visual
@@ -32,8 +35,11 @@ func setup_visual():
 	rotation_degrees = 0  # 标准等距角度
 	
 func add_component(component: component_):
+	#增加组件子节点
 	component.entity = self
 	components.add_child(component)
+	#组件树，用于快速查找以及使用
+	component_dict.set(component.component_name, component)
 	pass
 
 func get_component() -> component_:

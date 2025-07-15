@@ -61,7 +61,7 @@ func _ready() -> void:
 	utils_component.add_component(player1, shoot_c)
 	utils_component.add_component(player1, detect_c)
 	utils_component.add_component(player1, health_c)
-	G_Environment.player = player1
+	G_Environment.character = player1
 	
 	var camera = utils_camera.init_normal_camera()
 	camera.init(player1)

@@ -2,6 +2,8 @@
 class_name component_
 extends Node
 
+@onready var component_name: String = "No name component"
+
 # 持有对父实体(角色)的引用
 var entity: Node2D
 @onready var visual: Node2D = $Visual

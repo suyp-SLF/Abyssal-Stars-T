@@ -9,6 +9,7 @@ class_name DetectComponent
 var _execute_timer: float = 0.0
 
 func _ready_after() -> void:
+	component_name = "component_detect"
 	print(name + "侦查组件加载")
 
 func _physics_process(delta: float) -> void:
