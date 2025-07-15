@@ -4,7 +4,7 @@ extends Node2D
 @export var VISUAL_ROTATION = 45            # 标准等距旋转角度
 
 @export var layer: TileMapLayer = null
-@export var player: CharacterBody2D = null
+@export var character: character_ = null
 @export var camera: Camera2D = null
 #移动信息
 @export var movement_action: int = 0
@@ -19,8 +19,8 @@ func get_layer() -> TileMapLayer:
 func set_player(player: CharacterBody2D) -> void:
 	self.player = player
 	
-func get_player() -> CharacterBody2D:
-	return player
+func get_character() -> CharacterBody2D:
+	return character
 
 func set_camera(camera: Camera2D) -> void:
 	CONTROLLER_CAMERA.set_camera()
@@ -35,3 +35,7 @@ func get_mouse_position_visual() -> Vector2:
 func get_mouse_position_actual() -> Vector2:
 	var mos = get_global_mouse_position()
 	return  Vector2(mos.x, mos.y / VISUAL_SCALE)
+
+func set_movment_action(action_index: int) -> void:
+	movement_action = action_index
+	pass

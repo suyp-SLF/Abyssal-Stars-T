@@ -35,3 +35,6 @@ func add_component(component: component_):
 	component.entity = self
 	components.add_child(component)
 	pass
+
+func get_component() -> component_:
+	return null

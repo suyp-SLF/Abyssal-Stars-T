@@ -62,5 +62,5 @@ func _on_h_slider_value_changed(value: float) -> void:
 	pass # Replace with function body.
 
 func _on_option_button_item_selected(index: int) -> void:
-	G_Environment.movement_action = index
+	G_Environment.set_movment_action(index)
 	pass # Replace with function body.
