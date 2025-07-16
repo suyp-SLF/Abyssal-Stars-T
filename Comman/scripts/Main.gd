@@ -61,11 +61,13 @@ func _ready() -> void:
 	utils_component.add_component(player1, shoot_c)
 	utils_component.add_component(player1, detect_c)
 	utils_component.add_component(player1, health_c)
-	G_Environment.character = player1
-	
+	################安装摄像头
 	var camera = utils_camera.init_normal_camera()
 	camera.init(player1)
 	utils_camera.add_camera(camera)
+	################主要控制角色
+	G_Environment.set_character(player1)
+	G_Environment.update_charactor()
 	
 func controllers_config():
 	input_controller.controller_code = "input"

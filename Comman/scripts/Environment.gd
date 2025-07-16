@@ -4,7 +4,7 @@ extends Node2D
 @export var VISUAL_ROTATION = 45            # 标准等距旋转角度
 
 @export var layer: TileMapLayer = null
-@export var character: character_ = null
+@export var _character: character_ = null
 @export var camera: Camera2D = null
 #移动信息
 @export var movement_action: int = 0
@@ -18,12 +18,15 @@ func get_layer() -> TileMapLayer:
 
 func set_player(player: CharacterBody2D) -> void:
 	self.player = player
+
+func set_character(charactor: character_) -> void:
+	self._character = charactor
 	
 func get_character() -> CharacterBody2D:
-	return character
+	return _character
 
-func update_():
-	character.get_component("")
+func update_charactor():
+	var component = _character.get_component("component_movement")
 	pass
 
 func set_camera(camera: Camera2D) -> void:

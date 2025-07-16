@@ -27,6 +27,6 @@ static func init_detect_component() -> component_:
 	var ins = sence.instantiate()
 	return ins
 
-static func add_component(character: CharacterBody2D, component: component_) -> void:
+static func add_component(character: character_, component: component_) -> void:
 	character.add_component(component)
 	pass
