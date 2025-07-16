@@ -2,6 +2,7 @@ extends Controller
 
 #角色缓存移动
 @onready var path := []
+@export var player_dict: Dictionary = {}
 
 func _ready_after() -> void:
 	pass
@@ -18,7 +19,7 @@ func _MOUSE_EVENT(type: String, position: Vector2) -> void:
 	pass
 		
 #创建角色	
-func createPlayer(type: String, layernum: int, coord: Vector2i) -> character_:
+func createPlayer(name: String, type: String, layernum: int, coord: Vector2i) -> character_:
 	var position: Vector2 = CONTROLLER_MAP.map_to_local(coord)
 	var curr_layer = CONTROLLER_MAP.get_layer_by_num(layernum);
 	var config = getPlayerConfig(type)
@@ -36,6 +37,7 @@ func createPlayer(type: String, layernum: int, coord: Vector2i) -> character_:
 		"position": position,
 		"node": instance_player
 	})
+	player_dict.set(name, instance_player)
 	return instance_player
 
 func getPlayerConfig(type: String) -> Dictionary:

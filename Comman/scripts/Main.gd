@@ -38,8 +38,8 @@ func _ready() -> void:
 	G_Environment.set_layer(layer0)
 	
 	layer0.update_internals()
-	var player1 = CONTROLLER_PLAYER.createPlayer("normal", 0, Vector2i(0, 0))
-	var player2 = CONTROLLER_PLAYER.createPlayer("normal", 0, Vector2i(10, 10))
+	var player1 = CONTROLLER_PLAYER.createPlayer("robot1" ,"normal", 0, Vector2i(0, 0))
+	var player2 = CONTROLLER_PLAYER.createPlayer("robot2", "normal", 0, Vector2i(10, 10))
 	
 	var enemy1 = CONTROLLER_ENEMY.createEnemy("normal", 0, Vector2i(5, 10))
 	

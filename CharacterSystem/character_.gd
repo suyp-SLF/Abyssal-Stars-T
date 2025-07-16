@@ -42,5 +42,6 @@ func add_component(component: component_):
 	component_dict.set(component.component_name, component)
 	pass
 
-func get_component() -> component_:
-	return null
+func get_component(component_name: String) -> component_:
+	var component = component_dict.get(component_name)
+	return component

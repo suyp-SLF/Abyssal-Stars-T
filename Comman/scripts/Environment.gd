@@ -22,6 +22,10 @@ func set_player(player: CharacterBody2D) -> void:
 func get_character() -> CharacterBody2D:
 	return character
 
+func update_():
+	character.get_component("")
+	pass
+
 func set_camera(camera: Camera2D) -> void:
 	CONTROLLER_CAMERA.set_camera()
 	self.camera = camera
