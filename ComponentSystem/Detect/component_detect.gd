@@ -1,8 +1,6 @@
 # movement_component.gd
 extends component_
 class_name DetectComponent
-
-@export var action: action_
 #范围
 @export var scope = 200
 

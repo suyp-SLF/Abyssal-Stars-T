@@ -9,8 +9,6 @@ class_name MovementComponent
 #摩擦
 @export var friction := 1200
 
-@export var action: action_
-
 func _ready_after() -> void:
 	component_name = "component_movement"
 	print(name + "移动组件加载")

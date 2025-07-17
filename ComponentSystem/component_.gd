@@ -10,6 +10,8 @@ var entity: Node2D
 @onready var actual: Node2D = $Actual
 @onready var components: Node2D = $Components
 
+@export var action: action_
+
 func _ready() -> void:
 	print(name + "通用组件加载--组件连接父节点")
 	# 获取父实体(角色节点)
@@ -20,6 +22,10 @@ func _ready() -> void:
 	_ready_after()
 
 func _ready_after() -> void: pass
+
+func set_action(index: int):
+	action = self.get_child(index)
+	pass
 
 # 可以被重写的生命周期方法
 func _physics_process(delta: float) -> void: 

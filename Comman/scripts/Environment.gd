@@ -55,4 +55,6 @@ func get_mouse_position_actual() -> Vector2:
 
 func set_movment_action(action_index: int) -> void:
 	movement_action = action_index
+	var component = _character.get_component("component_movement")
+	component.set_action(0)
 	pass
