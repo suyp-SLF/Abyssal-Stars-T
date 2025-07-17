@@ -30,7 +30,7 @@ func _ready() -> void:
 #接收信息
 func _dispatcher(type: int, data: Dictionary) -> void:
 	match type:
-		MessageSystem.MessageType.UI_ALERT:
+		MessageSystem.MessageType.UI_EVENT:
 			alt_text = data["text"]
 			_UI_ALERT(alt_text)
 		MessageSystem.MessageType.PLAYER_UPDATE:

@@ -6,7 +6,7 @@ class_name MessageSystem  # 确保class_name唯一
 # 消息类型枚举
 # ========================
 enum MessageType {
-	UI_ALERT,          	# {text: String, color: Color}
+	UI_EVENT,          	# {text: String, color: Color}
 	PLAYER_UPDATE,     	# {health: float, position: Vector2}
 	PLAYER_COMMAND,		# {velocity: Vector2, command: String}
 	MOUSE_EVENT,			# {type: String, position: Vector2}}
@@ -88,7 +88,7 @@ static func _validate_data(type: MessageType, data: Dictionary) -> bool:
 	
 	match type:
 		#显示信息事件
-		MessageType.UI_ALERT:
+		MessageType.UI_EVENT:
 			valid = data.has("text") \
 			and data.has("color")
 		#角色状态更新事件
@@ -117,7 +117,7 @@ static func _validate_data(type: MessageType, data: Dictionary) -> bool:
 
 static func _get_required_fields(type: MessageType) -> String:
 	match type:
-		MessageType.UI_ALERT:
+		MessageType.UI_EVENT:
 			return "text, color"
 		MessageType.PLAYER_UPDATE:
 			return "health, position"

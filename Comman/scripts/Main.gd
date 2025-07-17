@@ -86,4 +86,3 @@ func controllers_config():
 	
 	camera_controller.controller_code = "camera"
 	camera_controller.set_path_config("")
-	

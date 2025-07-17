@@ -16,7 +16,8 @@ var UI_PLAYER = load(config_path)
 func _ready_after():
 	pass
 
-func _UI_ALERT(text: String)-> void:
+func _UI_EVENT(text: String)-> void:
+	
 	pass
 func _PLAYER_UPDATE(health: float, position: Vector2i) -> void:
 	pass
@@ -56,11 +57,13 @@ func addLabel(player: player_):
 	ins.setup(label_name, health, speed)
 	ins.name = label_name
 	pass
-
-func _on_h_slider_value_changed(value: float) -> void:
-	G_Environment.VISUAL_SCALE = value
+##########################
+##########################所有的按钮方法
+##########################
+func _visual_sacle(value: float) -> void:
+	G_Environment.set_visual_sacle(value)
 	pass # Replace with function body.
 
-func _on_option_button_item_selected(index: int) -> void:
+func _movment_action_selected(index: int) -> void:
 	G_Environment.set_movment_action(index)
 	pass # Replace with function body.

@@ -69,8 +69,8 @@ func get_layer_by_num(layer_num: int) -> TileMapLayer:
 	return layers[layer_num]
 	
 #创建新层,名字为Layer0
-func add_layer_by_num(layer_num: int) -> TileMapLayer:
-	var layer = TileMapLayer.new()
+func add_layer_by_num(layer_num: int) -> layer_:
+	var layer = layer_.new()
 	layer.position = Vector2(0, - layer_num * 500)
 	layer.set_z_index(layer_num * 10)
 	self.add_child(layer)
