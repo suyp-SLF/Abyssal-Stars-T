@@ -1,5 +1,5 @@
 class_name Controller
-extends Node2D
+extends Node
 
 @onready var controller_code = "default"
 @onready var controller_name = "default"

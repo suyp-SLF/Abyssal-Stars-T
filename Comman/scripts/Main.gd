@@ -84,5 +84,7 @@ func controllers_config():
 	CONTROLLER_ENEMY.set_path_config("res://CharacterSystem/PlayerSystem/config.cfg")
 	CONTROLLER_ENEMY.set_path_sences("res://CharacterSystem/PlayerSystem/sences.cfg")
 	
+
+	
 	camera_controller.controller_code = "camera"
 	camera_controller.set_path_config("")

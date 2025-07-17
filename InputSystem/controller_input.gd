@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 		})
 
 func getPosition():
-	global_mouse_position = get_global_mouse_position()
+	global_mouse_position = G_Environment.get_global_mouse_position()
 
 func keyboard_command_type():
 	# 检测单空格输入

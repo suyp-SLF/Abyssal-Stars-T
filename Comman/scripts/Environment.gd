@@ -12,7 +12,6 @@ extends Node2D
 func set_visual_sacle(value: float):
 	layer.set_visual_scale(value)
 	VISUAL_SCALE = value
-	
 
 func set_layer(layer: layer_) -> void:
 	CONTROLLER_MAP.set_curr_layer(layer)

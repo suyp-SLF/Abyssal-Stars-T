@@ -1,19 +1,19 @@
-extends CanvasLayer
+extends Controller
 
 @export var alert_panel: RichTextLabel
 
 var text: String
 
-@onready var player_list: VBoxContainer = $UI/Control/PlayerList
 @onready var skill_list: HBoxContainer = $UI/Control/SkillList
-
-@export var path_sences: String = "res://UISystem/sences.cfg"
+@onready var option_button: OptionButton = $Control/OptionButton
 
 var config_path: String
 var UI_PLAYER = load(config_path)
 
 # UI脚本中
 func _ready_after():
+	controller_code = "UI"
+	path_sences = "res://UISystem/sences.cfg"
 	pass
 
 func _UI_EVENT(text: String)-> void:
@@ -53,17 +53,21 @@ func addLabel(player: player_):
 	var health = player.P_health
 	var speed = player.P_speed
 	var ins = UI_PLAYER.instantiate();	
-	player_list.add_child(ins)
-	ins.setup(label_name, health, speed)
-	ins.name = label_name
+	#if ins:
+		#ins.setup(label_name, health, speed)
+		#ins.name = label_name
 	pass
 ##########################
-##########################所有的按钮方法
+####################所有的按钮方法
 ##########################
 func _visual_sacle(value: float) -> void:
 	G_Environment.set_visual_sacle(value)
-	pass # Replace with function body.
+	pass
 
 func _movment_action_selected(index: int) -> void:
 	G_Environment.set_movment_action(index)
-	pass # Replace with function body.
+	pass
+
+func _movment_action_update() -> void:
+	option_button.add_item("123", 1)
+	pass 

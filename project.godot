@@ -30,6 +30,7 @@ CONTROLLER_MAP="*res://MapSystem/controller_map.gd"
 CONTROLLER_PLAYER="*res://CharacterSystem/PlayerSystem/controller_player.gd"
 CONTROLLER_ENEMY="*res://CharacterSystem/EnemySystem/controller_enemy.gd"
 CONTROLLER_CAMERA="*res://CameraSystem/controller_camera.gd"
+CONTROLLER_UI="*res://UISystem/controller_UI.gd"
 
 [display]
 
