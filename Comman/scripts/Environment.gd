@@ -32,9 +32,8 @@ func get_character() -> CharacterBody2D:
 func update_charactor():
 	#获得当前控制角色的组件树
 	var component = _character.get_component("component_movement")
-	MessageSystem.send(MessageSystem.MessageType.GAME_EVENT, {
-		"position": Vector2i(0, 0),
-		"node": component
+	MessageSystem.send(MessageSystem.MessageType.UI_EVENT, {
+		"code": "update"
 	})
 
 	pass

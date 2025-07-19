@@ -89,8 +89,7 @@ static func _validate_data(type: MessageType, data: Dictionary) -> bool:
 	match type:
 		#显示信息事件
 		MessageType.UI_EVENT:
-			valid = data.has("text") \
-			and data.has("color")
+			valid = data.has("code")
 		#角色状态更新事件
 		MessageType.PLAYER_UPDATE:
 			valid = data.has("health") \

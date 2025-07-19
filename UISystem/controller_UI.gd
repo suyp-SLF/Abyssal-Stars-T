@@ -17,7 +17,7 @@ func _ready_after():
 	pass
 
 func _UI_EVENT(text: String)-> void:
-	
+	movment_action_update()
 	pass
 func _PLAYER_UPDATE(health: float, position: Vector2i) -> void:
 	pass
@@ -68,6 +68,8 @@ func _movment_action_selected(index: int) -> void:
 	G_Environment.set_movment_action(index)
 	pass
 
-func _movment_action_update() -> void:
+func movment_action_update() -> void:
+
 	option_button.add_item("123", 1)
+	option_button.add_item("321", 0)
 	pass 

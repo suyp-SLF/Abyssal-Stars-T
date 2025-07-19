@@ -604,8 +604,6 @@ offset_top = -10.0
 offset_bottom = 10.0
 grow_horizontal = 0
 grow_vertical = 2
-item_count = 1
-popup/item_0/id = 0
 
 [connection signal="value_changed" from="UI/Control/HSlider" to="UI" method="_visual_sacle"]
 [connection signal="item_selected" from="UI/Control/OptionButton" to="UI" method="_movment_action_selected"]
