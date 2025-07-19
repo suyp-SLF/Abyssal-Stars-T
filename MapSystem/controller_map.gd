@@ -20,6 +20,8 @@ var selected_cell: Vector2i
 	
 func _ready_after():
 	curr_layer = backLayer
+	controller_code = "map"
+	path_sences = ""
 	#setup_astar()
 	
 func _GAME_EVENT(event_id: int, position: Vector2i, node: Node) -> void:

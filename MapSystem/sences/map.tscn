@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://ciovvt2xjx142"]
+[gd_scene load_steps=62 format=4 uid="uid://ciovvt2xjx142"]
 
 [ext_resource type="Script" uid="uid://byfjo2d33kpkp" path="res://Comman/scripts/Main.gd" id="1_3emcu"]
 [ext_resource type="Script" uid="uid://b5waj2e4wqtrx" path="res://UISystem/controller_UI.gd" id="2_l603a"]
@@ -31,6 +31,7 @@
 [ext_resource type="Shader" uid="uid://d2f0b81ohxaae" path="res://Shader/circle.gdshader" id="28_pf7xi"]
 [ext_resource type="Shader" uid="uid://bw27d7lbq3cbl" path="res://Shader/health_bar.gdshader" id="29_d8fua"]
 [ext_resource type="Shader" uid="uid://dxxkjqeoy3yj2" path="res://Shader/ring.gdshader" id="29_jqumb"]
+[ext_resource type="Script" uid="uid://4w5rnxd4otb0" path="res://UISystem/ui_start.gd" id="32_f6k2u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f6k2u"]
 shader = ExtResource("28_pf7xi")
@@ -293,12 +294,14 @@ shader_parameter/enemy5_color = Vector4(0.5, 0, 1, 1)
 script = ExtResource("1_3emcu")
 
 [node name="InputController" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_13t6m")
 
 [node name="Environment" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="MouseController" type="Node2D" parent="Environment"]
+unique_name_in_owner = true
 script = ExtResource("9_d8fua")
 
 [node name="Ring" type="Node2D" parent="Environment/MouseController"]
@@ -313,10 +316,12 @@ offset_bottom = 75.0
 scale = Vector2(1, 0.5)
 
 [node name="PlayerController" type="Node2D" parent="Environment"]
+unique_name_in_owner = true
 y_sort_enabled = true
 script = ExtResource("7_ace6p")
 
 [node name="EnemyController" type="Node2D" parent="Environment"]
+unique_name_in_owner = true
 script = ExtResource("9_rsc2q")
 
 [node name="Enemy" parent="Environment/EnemyController" instance=ExtResource("13_pf7xi")]
@@ -324,6 +329,7 @@ z_index = 1
 position = Vector2(308, -122)
 
 [node name="MapController" type="Node2D" parent="Environment"]
+unique_name_in_owner = true
 y_sort_enabled = true
 script = ExtResource("5_6t1ta")
 
@@ -463,6 +469,7 @@ offset_bottom = 250.0
 script = ExtResource("26_d2n4r")
 
 [node name="CameraController" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("12_qdqgx")
 
 [node name="UI" type="Node" parent="."]
@@ -607,6 +614,7 @@ popup/item_0/text = "123"
 popup/item_0/id = 0
 
 [node name="UI_start" type="CanvasLayer" parent="UI"]
+script = ExtResource("32_f6k2u")
 
 [node name="Control" type="Control" parent="UI/UI_start"]
 layout_mode = 3
@@ -636,3 +644,4 @@ text = "Start Game"
 
 [connection signal="value_changed" from="UI/UI_game/Control/HSlider" to="UI/UI_game" method="_visual_sacle"]
 [connection signal="item_selected" from="UI/UI_game/Control/OptionButton" to="UI/UI_game" method="_movment_action_selected"]
+[connection signal="pressed" from="UI/UI_start/Control/start" to="UI/UI_start" method="_on_start_pressed"]

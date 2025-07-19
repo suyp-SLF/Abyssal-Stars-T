@@ -4,6 +4,10 @@ extends Controller
 @onready var path := []
 
 func _ready_after() -> void:
+	controller_code = "enemy"
+	set_path_config("res://CharacterSystem/PlayerSystem/config.cfg")
+	set_path_sences("res://CharacterSystem/PlayerSystem/sences.cfg")
+	
 	pass
 	
 #接收信息

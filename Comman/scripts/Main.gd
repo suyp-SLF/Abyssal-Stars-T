@@ -1,14 +1,25 @@
-@tool
 extends Node
 
 const globalcfg: String = "res://Comman/config/cfg_global.cfg"
 
+func _init() -> void:
+	pass
+
 func _ready() -> void:
+	controllers_config()
+	G_Environment.CONTROLLER_MAP = %MapController
+	G_Environment.CONTROLLER_CAMERA = %CameraController
+	G_Environment.CONTROLLER_PLAYER = %PlayerController
+	G_Environment.CONTROLLER_ENEMY = %EnemyController
+	G_Environment.CONTROLLER_INPUT = %InputController
 	pass
 	
 func start() -> void:
+	$UI/UI_game.visible = true
+	$UI/UI_start.visible = false
+	
 	print("user:// 的实际路径是: ", ProjectSettings.globalize_path("user://"))
-	controllers_config()
+	
 	var layer0: TileMapLayer = G_Environment.CONTROLLER_MAP.add_layer_by_num(0)
 	var layer1: TileMapLayer = G_Environment.CONTROLLER_MAP.add_layer_by_num(1)
 	var layer2: TileMapLayer = G_Environment.CONTROLLER_MAP.add_layer_by_num(2)
@@ -48,19 +59,4 @@ func start() -> void:
 	pass
 	
 func controllers_config():
-	G_Environment.CONTROLLER_INPUT.controller_code = "input"
-	G_Environment.CONTROLLER_INPUT.set_path_config("")
-	
-	G_Environment.CONTROLLER_MAP.controller_code = "map"
-	G_Environment.CONTROLLER_MAP.set_path_config("")
-	
-	G_Environment.CONTROLLER_PLAYER.controller_code = "player"
-	G_Environment.CONTROLLER_PLAYER.set_path_config("res://CharacterSystem/PlayerSystem/config.cfg")
-	G_Environment.CONTROLLER_PLAYER.set_path_sences("res://CharacterSystem/PlayerSystem/sences.cfg")
-	
-	G_Environment.CONTROLLER_ENEMY.controller_code = "enemy"
-	G_Environment.CONTROLLER_ENEMY.set_path_config("res://CharacterSystem/PlayerSystem/config.cfg")
-	G_Environment.CONTROLLER_ENEMY.set_path_sences("res://CharacterSystem/PlayerSystem/sences.cfg")
-	
-	G_Environment.CONTROLLER_CAMERA.controller_code = "camera"
-	G_Environment.CONTROLLER_CAMERA.set_path_config("")
+	pass

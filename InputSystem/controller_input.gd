@@ -30,7 +30,9 @@ var last_velocity: Vector2i
 #鼠标位置
 @onready var global_mouse_position: Vector2
 
-func _ready() -> void:
+func _ready_after() -> void:
+	controller_code = "input"
+	path_sences = ""
 	return
 
 func _physics_process(delta: float) -> void:

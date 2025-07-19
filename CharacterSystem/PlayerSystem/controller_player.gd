@@ -5,6 +5,9 @@ extends Controller
 @export var player_dict: Dictionary = {}
 
 func _ready_after() -> void:
+	controller_code = "player"
+	set_path_config("res://CharacterSystem/PlayerSystem/config.cfg")
+	set_path_sences("res://CharacterSystem/PlayerSystem/sences.cfg")
 	pass
 	
 #接收信息

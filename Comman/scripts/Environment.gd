@@ -1,9 +1,10 @@
 extends Node2D
 
-@onready var CONTROLLER_MAP = $Environment/MapController
-@onready var CONTROLLER_CAMERA = $CameraController
-@onready var CONTROLLER_PLAYER = $Environment/PlayerController
-@onready var CONTROLLER_ENEMY = $Environment/EnemyController
+@onready var CONTROLLER_MAP
+@onready var CONTROLLER_CAMERA
+@onready var CONTROLLER_PLAYER
+@onready var CONTROLLER_ENEMY
+@onready	 var CONTROLLER_INPUT
 
 @export var VISUAL_SCALE = 1.0  				# 标准2:1等距的y轴压缩
 @export var VISUAL_ROTATION = 45            # 标准等距旋转角度
@@ -13,6 +14,14 @@ extends Node2D
 @export var camera: Camera2D = null
 #移动信息
 @export var movement_action: int = 0
+
+func controller_init() ->void:
+	pass
+func _ready() -> void:
+	pass
+
+func _init() -> void:
+	pass
 
 func set_visual_sacle(value: float):
 	layer.set_visual_scale(value)
