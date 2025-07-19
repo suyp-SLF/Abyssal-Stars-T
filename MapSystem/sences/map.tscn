@@ -289,13 +289,8 @@ shader_parameter/enemy5_pos = Vector2(0.8, 0.2)
 shader_parameter/enemy5_size = 0.04
 shader_parameter/enemy5_color = Vector4(0.5, 0, 1, 1)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("input_controller", "player_controller", "map_controller", "enemy_controller", "camera_controller")]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_3emcu")
-input_controller = NodePath("InputController")
-player_controller = NodePath("Environment/PlayerController")
-map_controller = NodePath("Environment/MapController")
-enemy_controller = NodePath("Environment/EnemyController")
-camera_controller = NodePath("CameraController")
 
 [node name="InputController" type="Node2D" parent="."]
 script = ExtResource("4_13t6m")
@@ -470,10 +465,13 @@ script = ExtResource("26_d2n4r")
 [node name="CameraController" type="Node2D" parent="."]
 script = ExtResource("12_qdqgx")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="Node" parent="."]
+
+[node name="UI_game" type="CanvasLayer" parent="UI"]
+visible = false
 script = ExtResource("2_l603a")
 
-[node name="Control" type="Control" parent="UI"]
+[node name="Control" type="Control" parent="UI/UI_game"]
 material = SubResource("CanvasItemMaterial_5ej7w")
 layout_mode = 3
 anchors_preset = 15
@@ -482,7 +480,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+[node name="ColorRect" type="ColorRect" parent="UI/UI_game/Control"]
 material = SubResource("ShaderMaterial_5cbny")
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
@@ -492,7 +490,7 @@ grow_horizontal = 2
 size_flags_vertical = 3
 color = Color(0, 0, 0, 0.451)
 
-[node name="ColorRect3" type="ColorRect" parent="UI/Control"]
+[node name="ColorRect3" type="ColorRect" parent="UI/UI_game/Control"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 1
 anchors_preset = 12
@@ -503,7 +501,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
-[node name="AlertPanel" type="RichTextLabel" parent="UI/Control"]
+[node name="AlertPanel" type="RichTextLabel" parent="UI/UI_game/Control"]
 layout_mode = 2
 offset_left = 1420.0
 offset_top = 27.0
@@ -512,7 +510,7 @@ offset_bottom = 27.0
 bbcode_enabled = true
 fit_content = true
 
-[node name="PlayerList" type="VBoxContainer" parent="UI/Control"]
+[node name="PlayerList" type="VBoxContainer" parent="UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -520,21 +518,21 @@ anchor_right = 1.0
 offset_bottom = 50.0
 grow_horizontal = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI_game/Control"]
 layout_mode = 1
 offset_right = 500.0
 offset_bottom = 66.0
 metadata/_edit_use_anchors_ = true
 
-[node name="layer0" type="Button" parent="UI/Control/VBoxContainer"]
+[node name="layer0" type="Button" parent="UI/UI_game/Control/VBoxContainer"]
 layout_mode = 2
 text = "layer0"
 
-[node name="layer1" type="Button" parent="UI/Control/VBoxContainer"]
+[node name="layer1" type="Button" parent="UI/UI_game/Control/VBoxContainer"]
 layout_mode = 2
 text = "layer1"
 
-[node name="SkillList" type="HBoxContainer" parent="UI/Control"]
+[node name="SkillList" type="HBoxContainer" parent="UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -543,13 +541,13 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="Button" parent="UI/Control/SkillList" instance=ExtResource("4_2g28e")]
+[node name="Button" parent="UI/UI_game/Control/SkillList" instance=ExtResource("4_2g28e")]
 layout_mode = 2
 
-[node name="Button2" parent="UI/Control/SkillList" instance=ExtResource("4_2g28e")]
+[node name="Button2" parent="UI/UI_game/Control/SkillList" instance=ExtResource("4_2g28e")]
 layout_mode = 2
 
-[node name="Water" type="ColorRect" parent="UI/Control"]
+[node name="Water" type="ColorRect" parent="UI/UI_game/Control"]
 material = SubResource("ShaderMaterial_k1ek1")
 layout_mode = 1
 anchors_preset = 3
@@ -562,7 +560,7 @@ offset_top = -200.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Fire" type="ColorRect" parent="UI/Control"]
+[node name="Fire" type="ColorRect" parent="UI/UI_game/Control"]
 visible = false
 material = SubResource("ShaderMaterial_dxmf3")
 layout_mode = 1
@@ -572,13 +570,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect2" type="ColorRect" parent="UI/Control"]
+[node name="ColorRect2" type="ColorRect" parent="UI/UI_game/Control"]
 material = SubResource("ShaderMaterial_qrmdt")
 layout_mode = 1
 offset_right = 300.0
 offset_bottom = 300.0
 
-[node name="HSlider" type="HSlider" parent="UI/Control"]
+[node name="HSlider" type="HSlider" parent="UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -592,7 +590,7 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="OptionButton" type="OptionButton" parent="UI/Control"]
+[node name="OptionButton" type="OptionButton" parent="UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -604,6 +602,37 @@ offset_top = -10.0
 offset_bottom = 10.0
 grow_horizontal = 0
 grow_vertical = 2
+item_count = 1
+popup/item_0/text = "123"
+popup/item_0/id = 0
 
-[connection signal="value_changed" from="UI/Control/HSlider" to="UI" method="_visual_sacle"]
-[connection signal="item_selected" from="UI/Control/OptionButton" to="UI" method="_movment_action_selected"]
+[node name="UI_start" type="CanvasLayer" parent="UI"]
+
+[node name="Control" type="Control" parent="UI/UI_start"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="start" type="Button" parent="UI/UI_start/Control"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -15.5
+offset_right = 48.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Game"
+
+[connection signal="value_changed" from="UI/UI_game/Control/HSlider" to="UI/UI_game" method="_visual_sacle"]
+[connection signal="item_selected" from="UI/UI_game/Control/OptionButton" to="UI/UI_game" method="_movment_action_selected"]

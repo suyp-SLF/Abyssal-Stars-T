@@ -69,7 +69,6 @@ func _movment_action_selected(index: int) -> void:
 	pass
 
 func movment_action_update() -> void:
-
 	option_button.add_item("123", 1)
 	option_button.add_item("321", 0)
 	pass 

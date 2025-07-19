@@ -8,4 +8,4 @@ static func init_normal_camera() -> Camera_:
 	return ins
 
 static func add_camera(camera: Camera_) -> void:
-	CONTROLLER_CAMERA.add_child(camera)
+	G_Environment.CONTROLLER_CAMERA.add_child(camera)

@@ -20,8 +20,8 @@ func _MOUSE_EVENT(type: String, position: Vector2) -> void:
 		
 #创建角色	
 func createPlayer(name: String, type: String, layernum: int, coord: Vector2i) -> character_:
-	var position: Vector2 = CONTROLLER_MAP.map_to_local(coord)
-	var curr_layer = CONTROLLER_MAP.get_layer_by_num(layernum);
+	var position: Vector2 = G_Environment.CONTROLLER_MAP.map_to_local(coord)
+	var curr_layer = G_Environment.CONTROLLER_MAP.get_layer_by_num(layernum);
 	var config = getPlayerConfig(type)
 	# 加载场景资源
 	var player_ = utils_sence.get_instance().getSence(controller_code, path_sences, "player_base")

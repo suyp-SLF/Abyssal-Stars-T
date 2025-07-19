@@ -1,5 +1,10 @@
 extends Node2D
 
+@onready var CONTROLLER_MAP = $Environment/MapController
+@onready var CONTROLLER_CAMERA = $CameraController
+@onready var CONTROLLER_PLAYER = $Environment/PlayerController
+@onready var CONTROLLER_ENEMY = $Environment/EnemyController
+
 @export var VISUAL_SCALE = 1.0  				# 标准2:1等距的y轴压缩
 @export var VISUAL_ROTATION = 45            # 标准等距旋转角度
 
@@ -55,5 +60,5 @@ func get_mouse_position_actual() -> Vector2:
 func set_movment_action(action_index: int) -> void:
 	movement_action = action_index
 	var component = _character.get_component("component_movement")
-	component.set_action(0)
+	component.set_action(action_index)
 	pass
