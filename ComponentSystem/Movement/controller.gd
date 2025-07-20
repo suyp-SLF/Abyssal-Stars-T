@@ -3,6 +3,9 @@ extends action_
 
 var _velocity := Vector2.ZERO
 
+func _ready() -> void:
+	code = "controller"
+
 # Called when the node enters the scene tree for the first time.
 func _execute(delta: float) -> void:
 	var speed = _component.speed

@@ -46,8 +46,10 @@ func get_character() -> CharacterBody2D:
 func update_charactor():
 	#获得当前控制角色的组件树
 	var component = _character.get_component("component_movement")
+	var actions = component.get_children(false)
 	MessageSystem.send(MessageSystem.MessageType.UI_EVENT, {
-		"code": "update"
+		"code": "update",
+		"json": actions
 	})
 
 	pass

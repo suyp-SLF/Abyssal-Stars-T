@@ -609,9 +609,6 @@ offset_top = -10.0
 offset_bottom = 10.0
 grow_horizontal = 0
 grow_vertical = 2
-item_count = 1
-popup/item_0/text = "123"
-popup/item_0/id = 0
 
 [node name="UI_start" type="CanvasLayer" parent="UI"]
 script = ExtResource("32_f6k2u")

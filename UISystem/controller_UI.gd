@@ -16,8 +16,9 @@ func _ready_after():
 	path_sences = "res://UISystem/sences.cfg"
 	pass
 
-func _UI_EVENT(text: String)-> void:
-	movment_action_update()
+func _UI_EVENT(code: String, json: Array)-> void:
+	
+	movment_action_update(json)
 	pass
 func _PLAYER_UPDATE(health: float, position: Vector2i) -> void:
 	pass
@@ -68,7 +69,7 @@ func _movment_action_selected(index: int) -> void:
 	G_Environment.set_movment_action(index)
 	pass
 
-func movment_action_update() -> void:
-	option_button.add_item("123", 1)
-	option_button.add_item("321", 0)
+func movment_action_update(array: Array) -> void:
+	for index in array.size():
+		option_button.add_item(array[index].code, index)
 	pass 

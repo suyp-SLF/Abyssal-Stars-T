@@ -5,7 +5,8 @@ extends Node
 @onready var controller_name = "default"
 @onready var main: Node2D = %Main
 #alert
-@onready var alt_text: String = ""
+@onready var code: String = ""
+@onready var json: Array = []
 #update
 @onready var upd_health: float = 0.0
 @onready var upd_position: Vector2i = Vector2i(0, 0)
@@ -31,8 +32,9 @@ func _ready() -> void:
 func _dispatcher(type: int, data: Dictionary) -> void:
 	match type:
 		MessageSystem.MessageType.UI_EVENT:
-			alt_text = data["code"]
-			_UI_EVENT(alt_text)
+			code = data.get("code", "")
+			json = data.get("json", {})
+			_UI_EVENT(code, json)
 		MessageSystem.MessageType.PLAYER_UPDATE:
 			upd_health = data["health"]
 			upd_position = data["position"]
@@ -54,7 +56,7 @@ func _dispatcher(type: int, data: Dictionary) -> void:
 
 func _ready_after() -> void:
 	pass
-func _UI_EVENT(text: String) -> void:
+func _UI_EVENT(text: String, json: Array) -> void:
 	pass
 func _PLAYER_UPDATE(health: float, position: Vector2i) -> void:
 	pass
