@@ -8,12 +8,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_58a6q"]
 shader = ExtResource("4_fnd44")
 shader_parameter/color = Color(1, 0, 0, 1)
-shader_parameter/health = 0.8
+shader_parameter/health = 1.0
 
 [node name="ComponentHealthy" instance=ExtResource("1_polts")]
 script = ExtResource("1_d2hpq")
-max_healthy = 0
-current_healthy = 0
+max_healthy = 0.0
+current_healthy = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Visual" index="0"]
 
