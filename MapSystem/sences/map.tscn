@@ -29,7 +29,6 @@
 [ext_resource type="Shader" uid="uid://bg4e8eib2mrfm" path="res://Shader/ps2.gdshader" id="26_gfqxi"]
 [ext_resource type="Shader" uid="uid://d2mrjdu06kl6b" path="res://Shader/height_line.gdshader" id="27_fge3v"]
 [ext_resource type="Shader" uid="uid://d2f0b81ohxaae" path="res://Shader/circle.gdshader" id="28_pf7xi"]
-[ext_resource type="Shader" uid="uid://bw27d7lbq3cbl" path="res://Shader/health_bar.gdshader" id="29_d8fua"]
 [ext_resource type="Shader" uid="uid://dxxkjqeoy3yj2" path="res://Shader/ring.gdshader" id="29_jqumb"]
 [ext_resource type="Script" uid="uid://4w5rnxd4otb0" path="res://UISystem/ui_start.gd" id="32_f6k2u"]
 
@@ -216,8 +215,44 @@ shader_parameter/outer_radius = 55.0
 shader_parameter/ring_color = Color(1, 1, 1, 1)
 shader_parameter/tile_size = Vector2(64, 32)
 
+[sub_resource type="Shader" id="Shader_d2n4r"]
+code = "shader_type canvas_item;
+uniform vec4 color : source_color;
+uniform float health;
+
+void fragment() {
+// ColorUniform:2
+	vec3 n_out2p0 = color.rgb;
+	float n_out2p1 = color.a;
+
+// VectorOp:8
+	vec3 n_in8p1 = vec3(0.50000, 0.50000, 0.50000);
+	vec3 n_out8p0 = n_out2p0 * n_in8p1;
+
+// Input:3
+	vec3 n_out3p0 = vec3(UV, 0.0);
+
+// VectorDecompose:4
+	float n_out4p0 = n_out3p0.x;
+	float n_out4p1 = n_out3p0.y;
+	float n_out4p2 = n_out3p0.z;
+
+// ScalarUniform:6
+	float n_out6p0 = health;
+
+// Compare:5
+	bool n_out5p0 = n_out4p0>=n_out6p0;
+
+// VectorMix:7
+	vec3 n_out7p0 = mix(n_out2p0, n_out8p0, vec3(n_out5p0 ? 1.0 : 0.0));
+
+// Output:0
+	COLOR.rgb = n_out7p0;
+
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1mtjm"]
-shader = ExtResource("29_d8fua")
+shader = SubResource("Shader_d2n4r")
 shader_parameter/color = Color(0.287082, 0.77, 0.2233, 1)
 shader_parameter/health = 0.12
 
