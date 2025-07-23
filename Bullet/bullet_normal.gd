@@ -24,7 +24,7 @@ func _handle_collision(hit_pos: Vector2, target: Object):
 		"event_id": "FB", 
 		"hit_pos": hit_pos})
 	# 碰撞后立即消失或可以添加命中效果
-	if target.component is HealthyComponent:
+	if "component" in target and target.component is HealthyComponent:
 		target.component.take_damage(20)
 		print(str(target.entity.P_tag) + "被攻击")
 	else:
