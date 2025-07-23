@@ -45,3 +45,6 @@ func add_component(component: component_):
 func get_component(component_name: String) -> component_:
 	var component = component_dict.get(component_name)
 	return component
+	
+func dead():
+	queue_free()

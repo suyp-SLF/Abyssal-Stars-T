@@ -9,6 +9,8 @@ class_name HealthyComponent
 	
 func take_damage(amount: float) -> void:
 	current_healthy -= amount
+	if current_healthy <= 0:
+		entity.dead()
 	display_health()
 	
 func display_health() -> void:
