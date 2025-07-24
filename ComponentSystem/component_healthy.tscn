@@ -50,19 +50,17 @@ script = ExtResource("1_d2hpq")
 max_healthy = 0.0
 current_healthy = 0.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Visual" index="0"]
+[node name="healthnum" type="Label" parent="Visual" index="0"]
+offset_left = -62.0
+offset_top = 77.0
+offset_right = -36.0
+offset_bottom = 100.0
 
-[node name="circle" parent="Actual" index="0" instance=ExtResource("3_vboba")]
-
-[node name="health" type="ColorRect" parent="Actual" index="1"]
+[node name="healthbar" type="ColorRect" parent="Visual" index="1"]
 material = SubResource("ShaderMaterial_fnd44")
 offset_left = -31.0
 offset_top = 86.0
 offset_right = 43.0
 offset_bottom = 90.0
 
-[node name="healthnum" type="Label" parent="Actual" index="2"]
-offset_left = -62.0
-offset_top = 77.0
-offset_right = -36.0
-offset_bottom = 100.0
+[node name="circle" parent="Actual" index="0" instance=ExtResource("3_vboba")]

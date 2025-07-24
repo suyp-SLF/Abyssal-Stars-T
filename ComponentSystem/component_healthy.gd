@@ -3,8 +3,11 @@ class_name HealthyComponent
 
 # 健康组件
 @export var max_healthy: float
-@export var current_healthy: float
+@export var current_healthy: float = 0.0
 @onready var area_2d: Area2D = $Actual/Area2D
+
+@onready var health_num = $Visual/healthnum
+@onready var health_bar = $Visual/healthbar
 
 	
 func take_damage(amount: float) -> void:
@@ -15,11 +18,11 @@ func take_damage(amount: float) -> void:
 	
 func display_health() -> void:
 	var cal: float = current_healthy/max_healthy
-	$Actual/healthnum.text = str(current_healthy)
+	health_num.text = str(current_healthy)
 	
-	var unique_mat = create_unique_material($Actual/health.material)
+	var unique_mat = create_unique_material(health_bar.material)
 	unique_mat.set_shader_parameter("health", cal)
-	$Actual/health.material = unique_mat
+	health_bar.material = unique_mat
 	
 func heal(amount: int) -> void:
 	current_healthy = min(current_healthy + amount, max_healthy)
