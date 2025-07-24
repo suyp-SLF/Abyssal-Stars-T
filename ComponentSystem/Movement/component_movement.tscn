@@ -6,7 +6,7 @@
 
 [node name="ComponentMovement" type="Node" node_paths=PackedStringArray("action")]
 script = ExtResource("1_vrles")
-action = NodePath("follow")
+action = NodePath("controller")
 
 [node name="controller" type="Node" parent="."]
 script = ExtResource("2_3mp1v")
