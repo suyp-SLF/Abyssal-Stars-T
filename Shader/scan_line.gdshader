@@ -13,25 +13,8 @@ uniform vec2 enemy1_pos = vec2(0.3, 0.3);
 uniform float enemy1_size = 0.005;
 uniform vec4 enemy1_color = vec4(1.0, 0.0, 0.0, 1.0); // 红色
 
-// 敌人2属性
-uniform vec2 enemy2_pos = vec2(0.7, 0.4);
-uniform float enemy2_size = 0.025;
-uniform vec4 enemy2_color = vec4(1.0, 1.0, 0.0, 1.0); // 黄色
-
-// 敌人3属性
-uniform vec2 enemy3_pos = vec2(0.5, 0.7);
-uniform float enemy3_size = 0.035;
-uniform vec4 enemy3_color = vec4(0.0, 1.0, 1.0, 1.0); // 青色
-
-// 敌人4属性
-uniform vec2 enemy4_pos = vec2(0.2, 0.6);
-uniform float enemy4_size = 0.02;
-uniform vec4 enemy4_color = vec4(1.0, 0.5, 0.0, 1.0); // 橙色
-
-// 敌人5属性
-uniform vec2 enemy5_pos = vec2(0.8, 0.2);
-uniform float enemy5_size = 0.04;
-uniform vec4 enemy5_color = vec4(0.5, 0.0, 1.0, 1.0); // 紫色
+uniform sampler2D detect_data;  // 每个纹素包含一个敌人的数据 (RGBA: 位置x,位置y,大小,类型)
+uniform int detect_count = 1;
 
 void fragment() {
     vec2 relative_pos = UV - center;
@@ -58,29 +41,20 @@ void fragment() {
         float total_enemy_alpha = 0.0;
 
         // 敌人1
-        float enemy1_strength = smoothstep(enemy1_size * 1.5, enemy1_size, length(UV - enemy1_pos));
-        enemy_blend = mix(enemy_blend, enemy1_color, enemy1_strength);
-        total_enemy_alpha = max(total_enemy_alpha, enemy1_strength * enemy1_color.a);
-
-        // 敌人2
-        float enemy2_strength = smoothstep(enemy2_size * 1.5, enemy2_size, length(UV - enemy2_pos));
-        enemy_blend = mix(enemy_blend, enemy2_color, enemy2_strength);
-        total_enemy_alpha = max(total_enemy_alpha, enemy2_strength * enemy2_color.a);
-
-        // 敌人3
-        float enemy3_strength = smoothstep(enemy3_size * 1.5, enemy3_size, length(UV - enemy3_pos));
-        enemy_blend = mix(enemy_blend, enemy3_color, enemy3_strength);
-        total_enemy_alpha = max(total_enemy_alpha, enemy3_strength * enemy3_color.a);
-
-        // 敌人4
-        float enemy4_strength = smoothstep(enemy4_size * 1.5, enemy4_size, length(UV - enemy4_pos));
-        enemy_blend = mix(enemy_blend, enemy4_color, enemy4_strength);
-        total_enemy_alpha = max(total_enemy_alpha, enemy4_strength * enemy4_color.a);
-
-        // 敌人5
-        float enemy5_strength = smoothstep(enemy5_size * 1.5, enemy5_size, length(UV - enemy5_pos));
-        enemy_blend = mix(enemy_blend, enemy5_color, enemy5_strength);
-        total_enemy_alpha = max(total_enemy_alpha, enemy5_strength * enemy5_color.a);
+        //float enemy1_strength = smoothstep(enemy1_size * 1.5, enemy1_size, length(UV - enemy1_pos));
+        //enemy_blend = mix(enemy_blend, enemy1_color, enemy1_strength);
+        //total_enemy_alpha = max(total_enemy_alpha, enemy1_strength * enemy1_color.a);
+		
+		// 然后在代码中:
+		for (int i = 0; i < detect_count; i++) {
+		    vec4 data = texelFetch(detect_data, ivec2(i, 0), 0);
+		    vec2 pos = data.xy;
+		    float size = data.z;
+			
+			float enemy_strength = smoothstep(size * 1.5, size, length(UV - pos));
+		    enemy_blend = mix(enemy_blend, enemy1_color, enemy_strength);
+			//total_enemy_alpha = max(total_enemy_alpha, enemy_strength * enemy1_color.a);
+		}
 
         // 组合所有效果
         COLOR = fill_color;

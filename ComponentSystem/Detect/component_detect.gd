@@ -18,3 +18,6 @@ func _physics_process(delta: float) -> void:
 	if _execute_timer >= 5.0:
 		action._execute(delta)
 		_execute_timer = 0.0
+
+func display_map() -> void:
+	pass
