@@ -14,7 +14,7 @@ uniform float enemy1_size = 0.005;
 uniform vec4 enemy1_color = vec4(1.0, 0.0, 0.0, 1.0); // 红色
 
 uniform sampler2D detect_data;  // 每个纹素包含一个敌人的数据 (RGBA: 位置x,位置y,大小,类型)
-uniform int detect_count = 1;
+uniform int detect_count = 0;
 
 void fragment() {
     vec2 relative_pos = UV - center;
@@ -48,12 +48,13 @@ void fragment() {
 		// 然后在代码中:
 		for (int i = 0; i < detect_count; i++) {
 		    vec4 data = texelFetch(detect_data, ivec2(i, 0), 0);
-		    vec2 pos = data.xy;
-		    float size = data.z;
+		    vec2 pos = vec2(0.5 + data.x, 0.5 + data.y);
+		    float size = data.z * 0.51;
+
+			float enemy_strength = smoothstep(size * 1.5, size, length(UV - pos));			
+			enemy_blend = mix(enemy_blend, enemy1_color, enemy_strength);
+			total_enemy_alpha = max(total_enemy_alpha, enemy_strength * enemy1_color.a);
 			
-			float enemy_strength = smoothstep(size * 1.5, size, length(UV - pos));
-		    enemy_blend = mix(enemy_blend, enemy1_color, enemy_strength);
-			//total_enemy_alpha = max(total_enemy_alpha, enemy_strength * enemy1_color.a);
 		}
 
         // 组合所有效果

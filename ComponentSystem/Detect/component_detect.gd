@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	action.actual.global_position = entity.actual_pos
 	_execute_timer += delta
 	
-	if _execute_timer >= 5.0:
+	if _execute_timer >= 0.1:
 		action._execute(delta)
 		_execute_timer = 0.0
 

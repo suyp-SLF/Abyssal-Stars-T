@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://ciovvt2xjx142"]
+[gd_scene load_steps=64 format=4 uid="uid://ciovvt2xjx142"]
 
 [ext_resource type="Script" uid="uid://byfjo2d33kpkp" path="res://Comman/scripts/Main.gd" id="1_3emcu"]
 [ext_resource type="Script" uid="uid://b5waj2e4wqtrx" path="res://UISystem/controller_UI.gd" id="2_l603a"]
@@ -31,6 +31,7 @@
 [ext_resource type="Shader" uid="uid://d2f0b81ohxaae" path="res://Shader/circle.gdshader" id="28_pf7xi"]
 [ext_resource type="Shader" uid="uid://dxxkjqeoy3yj2" path="res://Shader/ring.gdshader" id="29_jqumb"]
 [ext_resource type="Script" uid="uid://dnymn0slxn3sy" path="res://MapSystem/sences/little_map.gd" id="31_f6k2u"]
+[ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="32_1mtjm"]
 [ext_resource type="Script" uid="uid://4w5rnxd4otb0" path="res://UISystem/ui_start.gd" id="32_f6k2u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f6k2u"]
@@ -295,14 +296,14 @@ shader_parameter/noise_influence = 1.0
 shader = ExtResource("24_s73ar")
 shader_parameter/fill_color = Color(0, 0.1, 0, 1)
 shader_parameter/line_color = Color(0.9, 0.9, 0.7, 0.8)
-shader_parameter/line_thickness = 0.02
-shader_parameter/speed = 1.0
-shader_parameter/radar_radius = 0.4
+shader_parameter/line_thickness = 0.1
+shader_parameter/speed = 1.225
+shader_parameter/radar_radius = 1.0
 shader_parameter/center = Vector2(0.5, 0.5)
 shader_parameter/enemy1_pos = Vector2(0.3, 0.3)
 shader_parameter/enemy1_size = 0.005
 shader_parameter/enemy1_color = Vector4(1, 0, 0, 1)
-shader_parameter/detect_count = 5
+shader_parameter/detect_count = 1
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3emcu")
@@ -590,12 +591,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="little_map" type="ColorRect" parent="UI/UI_game/Control"]
+[node name="mini_map" type="ColorRect" parent="UI/UI_game/Control"]
 material = SubResource("ShaderMaterial_qrmdt")
 layout_mode = 1
 offset_right = 300.0
 offset_bottom = 300.0
 script = ExtResource("31_f6k2u")
+
+[node name="color_map" type="Sprite2D" parent="UI/UI_game/Control"]
+texture = ExtResource("32_1mtjm")
+
+[node name="Label" type="Label" parent="UI/UI_game/Control"]
+layout_mode = 0
+offset_left = 195.0
+offset_right = 235.0
+offset_bottom = 23.0
 
 [node name="HSlider" type="HSlider" parent="UI/UI_game/Control"]
 layout_mode = 1

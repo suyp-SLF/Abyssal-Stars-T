@@ -17,8 +17,10 @@ func _ready_after():
 	pass
 
 func _UI_EVENT(code: String, json: Array)-> void:
-	
-	movment_action_update(json)
+	if("update_controller" == code):
+		movment_action_update(json)
+	elif("update_minimap" == code):
+		update_minimap(json)
 	pass
 func _PLAYER_UPDATE(health: float, position: Vector2i) -> void:
 	pass
@@ -73,3 +75,6 @@ func movment_action_update(array: Array) -> void:
 	for index in array.size():
 		option_button.add_item(array[index].code, index)
 	pass 
+
+func update_minimap(positions: PackedVector4Array) -> void:
+	$Control/mini_map.update_texture(positions)

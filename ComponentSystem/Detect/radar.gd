@@ -16,10 +16,20 @@ func _ready() -> void:
 func _execute(delta: float) -> void:
 	 # 持续获取重叠的 Area2D
 	var overlapping_areas = area.get_overlapping_areas()
+	var postions: PackedVector4Array =  []
+	
 	for area in overlapping_areas:
-		if (not area.entity.P_tag == "Player"):
-			print("当前重叠的 Area2D:", area.name)
-			# 绘制雷达效果（可选）
+		if ("entity" in area && area.entity.P_tag == "Player"):
+			print("当前重叠的 Area2D:", area.entity.position)
+			var position = Vector4(
+				(_component.entity.position.x - area.entity.position.x),
+				(_component.entity.position.y - area.entity.position.y),
+				0.02,
+				1
+			)
+			postions.append(position)
+	G_Environment.set_entity(postions)
+	# 绘制雷达效果（可选）
 	_draw()
 	
 func _draw():

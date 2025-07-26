@@ -15,6 +15,9 @@ extends Node2D
 #移动信息
 @export var movement_action: int = 0
 
+#扫描的实体
+@export var entity_postions: PackedVector4Array = []
+
 func controller_init() ->void:
 	pass
 func _ready() -> void:
@@ -40,15 +43,25 @@ func set_player(player: CharacterBody2D) -> void:
 func set_character(charactor: character_) -> void:
 	self._character = charactor
 	
-func get_character() -> CharacterBody2D:
+func get_character() -> character_:
 	return _character
+	
+func set_entity(entity_postions: PackedVector4Array) -> void:
+	self.entity_postions = entity_postions
+	MessageSystem.send(MessageSystem.MessageType.UI_EVENT, {
+		"code": "update_minimap",
+		"json": entity_postions
+	})
+	
+func get_entity() -> PackedVector4Array:
+	return entity_postions
 
 func update_charactor():
 	#获得当前控制角色的组件树
 	var component = _character.get_component("component_movement")
 	var actions = component.get_children(false)
 	MessageSystem.send(MessageSystem.MessageType.UI_EVENT, {
-		"code": "update",
+		"code": "update_controller",
 		"json": actions
 	})
 
