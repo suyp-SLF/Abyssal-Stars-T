@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cxpow5ujvl4fm" path="res://ComponentSystem/Detect/radar.gd" id="2_vduqb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vduqb"]
-radius = 250.0
+radius = 1000.0
 
 [node name="action_" node_paths=PackedStringArray("area") instance=ExtResource("1_uahfb")]
 script = ExtResource("2_vduqb")
@@ -15,4 +15,4 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actual/area" index="0"]
 shape = SubResource("CircleShape2D_vduqb")
-debug_color = Color(0, 0.7, 0.571667, 0.2)
+debug_color = Color(1, 0.698928, 0.647914, 0.2)

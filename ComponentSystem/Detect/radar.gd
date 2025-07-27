@@ -19,7 +19,8 @@ func _execute(delta: float) -> void:
 	var postions: PackedVector4Array =  []
 	
 	for area in overlapping_areas:
-		if ("entity" in area && area.entity.P_tag == "Player"):
+		#if ("entity" in area && area.entity.P_tag == "Player"):
+		if ("entity" in area):
 			print("当前重叠的 Area2D:", area.entity.position)
 			var position = Vector4(
 				(_component.entity.position.x - area.entity.position.x),
