@@ -78,3 +78,6 @@ func movment_action_update(array: Array) -> void:
 
 func update_minimap(positions: PackedVector4Array) -> void:
 	$Control/mini_map.update_texture(positions)
+
+func update_wether() -> void:
+	pass
