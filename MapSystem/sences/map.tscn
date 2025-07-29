@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://ciovvt2xjx142"]
+[gd_scene load_steps=66 format=4 uid="uid://ciovvt2xjx142"]
 
 [ext_resource type="Script" uid="uid://byfjo2d33kpkp" path="res://Comman/scripts/Main.gd" id="1_3emcu"]
 [ext_resource type="Script" uid="uid://b5waj2e4wqtrx" path="res://UISystem/controller_UI.gd" id="2_l603a"]
@@ -33,7 +33,8 @@
 [ext_resource type="Shader" uid="uid://dxxkjqeoy3yj2" path="res://Shader/ring.gdshader" id="29_jqumb"]
 [ext_resource type="Script" uid="uid://dnymn0slxn3sy" path="res://MapSystem/sences/little_map.gd" id="31_f6k2u"]
 [ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="32_1mtjm"]
-[ext_resource type="Script" uid="uid://4w5rnxd4otb0" path="res://UISystem/ui_start.gd" id="32_f6k2u"]
+[ext_resource type="Script" uid="uid://4w5rnxd4otb0" path="res://UISystem/scripts/start.gd" id="32_f6k2u"]
+[ext_resource type="Script" uid="uid://bo14p18iyekkn" path="res://UISystem/scripts/developer.gd" id="35_pk2yg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f6k2u"]
 shader = ExtResource("28_pf7xi")
@@ -481,9 +482,10 @@ unique_name_in_owner = true
 script = ExtResource("12_qdqgx")
 
 [node name="UI" type="Node" parent="."]
+script = ExtResource("2_l603a")
 
 [node name="UI_game" type="CanvasLayer" parent="UI"]
-script = ExtResource("2_l603a")
+script = ExtResource("27_qrmdt")
 
 [node name="wether" type="Control" parent="UI/UI_game"]
 layout_mode = 3
@@ -494,7 +496,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("27_qrmdt")
 
 [node name="rain" type="ColorRect" parent="UI/UI_game/wether"]
 material = SubResource("ShaderMaterial_f53ol")
@@ -621,6 +622,33 @@ offset_left = 195.0
 offset_right = 235.0
 offset_bottom = 23.0
 
+[node name="MenuButton" type="MenuButton" parent="UI/UI_game/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.4
+anchor_bottom = 1.783
+offset_left = 87.0
+offset_top = 354.0
+offset_right = -2471.0
+offset_bottom = -1380.64
+text = "123321"
+item_count = 2
+popup/item_0/text = "123123"
+popup/item_0/icon = ExtResource("32_1mtjm")
+popup/item_0/checkable = 1
+popup/item_0/checked = true
+popup/item_0/id = 0
+popup/item_1/text = "321"
+popup/item_1/checkable = 1
+popup/item_1/checked = true
+popup/item_1/id = 1
+
+[node name="CheckButton" type="CheckButton" parent="UI/UI_game/Control"]
+layout_mode = 0
+offset_left = 195.0
+offset_right = 239.0
+offset_bottom = 24.0
+
 [node name="HSlider" type="HSlider" parent="UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = 1
@@ -648,7 +676,19 @@ offset_bottom = 10.0
 grow_horizontal = 0
 grow_vertical = 2
 
+[node name="DeveloperMode" type="Button" parent="UI/UI_game/Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_bottom = 91.0
+grow_horizontal = 0
+text = "开发者模式"
+
 [node name="UI_start" type="CanvasLayer" parent="UI"]
+visible = false
 script = ExtResource("32_f6k2u")
 
 [node name="Control" type="Control" parent="UI/UI_start"]
@@ -677,6 +717,45 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start Game"
 
+[node name="UI_developer" type="CanvasLayer" parent="UI"]
+visible = false
+script = ExtResource("35_pk2yg")
+
+[node name="Control" type="Control" parent="UI/UI_developer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mask" type="ColorRect" parent="UI/UI_developer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.901961)
+
+[node name="Close" type="Button" parent="UI/UI_developer/Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_bottom = 98.0
+grow_horizontal = 0
+text = "开发者模式"
+
+[node name="Wether" type="MenuButton" parent="UI/UI_developer/Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
 [connection signal="value_changed" from="UI/UI_game/Control/HSlider" to="UI/UI_game" method="_visual_sacle"]
 [connection signal="item_selected" from="UI/UI_game/Control/OptionButton" to="UI/UI_game" method="_movment_action_selected"]
+[connection signal="pressed" from="UI/UI_game/Control/DeveloperMode" to="UI/UI_game" method="developer_mode"]
 [connection signal="pressed" from="UI/UI_start/Control/start" to="UI/UI_start" method="_on_start_pressed"]
+[connection signal="pressed" from="UI/UI_developer/Control/Close" to="UI/UI_developer" method="_close"]

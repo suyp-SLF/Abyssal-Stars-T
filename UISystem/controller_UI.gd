@@ -1,4 +1,5 @@
 extends Controller
+class_name UI
 
 @export var alert_panel: RichTextLabel
 
@@ -16,12 +17,16 @@ func _ready_after():
 	path_sences = "res://UISystem/sences.cfg"
 	pass
 
-func _UI_EVENT(code: String, json: Array)-> void:
-	if("update_controller" == code):
-		movment_action_update(json)
-	elif("update_minimap" == code):
-		update_minimap(json)
-	pass
+func _UI_EVENT(code: String, data)-> void:
+	if ("update_controller" == code):
+		movment_action_update(data)
+	elif ("update_minimap" == code):
+		update_minimap(data)
+	elif ("update_wether" == code):
+		update_wether(data)
+	elif ("developer" == code):
+		developer_mode(data)
+		
 func _PLAYER_UPDATE(health: float, position: Vector2i) -> void:
 	pass
 func _PLAYER_COMMAND(command: MessageSystem.PLAYER_COMMAND, velocity: Vector2) -> void:
@@ -74,10 +79,16 @@ func _movment_action_selected(index: int) -> void:
 func movment_action_update(array: Array) -> void:
 	for index in array.size():
 		option_button.add_item(array[index].code, index)
-	pass 
 
 func update_minimap(positions: PackedVector4Array) -> void:
 	$Control/mini_map.update_texture(positions)
 
-func update_wether() -> void:
-	pass
+func update_wether(array: Array) -> void:
+	for index in array.size():
+		var check = CheckButton.new()
+
+func developer_mode(display: bool) -> void:
+	if display:
+		$UI_developer.show()
+	else:
+		$UI_developer.hide()

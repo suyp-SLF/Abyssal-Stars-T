@@ -6,7 +6,7 @@ extends Node
 @onready var main: Node2D = %Main
 #alert
 @onready var code: String = ""
-@onready var json: Array = []
+@onready var data: Variant
 #update
 @onready var upd_health: float = 0.0
 @onready var upd_position: Vector2i = Vector2i(0, 0)
@@ -29,34 +29,34 @@ func _ready() -> void:
 	_ready_after()
 	
 #接收信息
-func _dispatcher(type: int, data: Dictionary) -> void:
+func _dispatcher(type: int, datas: Dictionary) -> void:
 	match type:
 		MessageSystem.MessageType.UI_EVENT:
-			code = data.get("code", "")
-			json = data.get("json", {})
-			_UI_EVENT(code, json)
+			code = datas.get("code", "")
+			data = datas.get("data")
+			_UI_EVENT(code, data)
 		MessageSystem.MessageType.PLAYER_UPDATE:
-			upd_health = data["health"]
-			upd_position = data["position"]
+			upd_health = datas["health"]
+			upd_position = datas["position"]
 			_PLAYER_UPDATE(upd_health, upd_position)
 		#接收玩家命令
 		MessageSystem.MessageType.PLAYER_COMMAND:
-			cmd_command = data["command"]
-			cmd_velocity = data.get("velocity", Vector2i(0, 0))
+			cmd_command = datas["command"]
+			cmd_velocity = datas.get("velocity", Vector2i(0, 0))
 			_PLAYER_COMMAND(cmd_command, cmd_velocity)
 		MessageSystem.MessageType.MOUSE_EVENT:
-			mos_type = data["type"]
-			mos_position = data["position"]
+			mos_type = datas["type"]
+			mos_position = datas["position"]
 			_MOUSE_EVENT(mos_type, mos_position)
 		MessageSystem.MessageType.GAME_EVENT:
-			evt_id = data["id"]
-			evt_position = data["position"]
-			evt_node = data["node"]
+			evt_id = datas["id"]
+			evt_position = datas["position"]
+			evt_node = datas["node"]
 			_GAME_EVENT(evt_id, evt_position, evt_node)
 
 func _ready_after() -> void:
 	pass
-func _UI_EVENT(text: String, json: Array) -> void:
+func _UI_EVENT(text: String, data: Variant) -> void:
 	pass
 func _PLAYER_UPDATE(health: float, position: Vector2i) -> void:
 	pass

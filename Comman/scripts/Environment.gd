@@ -14,9 +14,10 @@ extends Node2D
 @export var camera: Camera2D = null
 #移动信息
 @export var movement_action: int = 0
-
 #扫描的实体
 @export var entity_postions: PackedVector4Array = []
+#天气
+@export var _wethers_array: Array[int] = []
 
 func controller_init() ->void:
 	pass
@@ -46,6 +47,13 @@ func set_character(charactor: character_) -> void:
 func get_character() -> character_:
 	return _character
 	
+func set_wether(wethers_array: Array[int]) -> void:
+	_wethers_array = wethers_array
+	MessageSystem.send(MessageSystem.MessageType.WETHER_EVENT, {
+		"code": "update_wether",
+		"data": wethers_array
+	})
+	
 func set_entity(entity_postions: PackedVector4Array) -> void:
 	self.entity_postions = entity_postions
 	MessageSystem.send(MessageSystem.MessageType.UI_EVENT, {
@@ -64,7 +72,6 @@ func update_charactor():
 		"code": "update_controller",
 		"json": actions
 	})
-
 	pass
 
 func set_camera(camera: Camera2D) -> void:

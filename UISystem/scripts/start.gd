@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name ui_start
 
 
 # Called when the node enters the scene tree for the first time.
