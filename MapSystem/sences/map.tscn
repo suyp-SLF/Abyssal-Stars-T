@@ -713,19 +713,24 @@ visible = false
 script = ExtResource("35_pk2yg")
 
 [node name="Mask" type="ColorRect" parent="UI/UI_developer"]
-anchors_preset = 15
+custom_minimum_size = Vector2(600, 0)
+anchors_preset = 11
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 2
 size_flags_vertical = 3
 color = Color(0, 0, 0, 0.901961)
 
 [node name="List" type="VBoxContainer" parent="UI/UI_developer"]
-anchors_preset = 15
+custom_minimum_size = Vector2(600, 0)
+anchors_preset = 11
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_left = -100.0
+grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("36_vb7g5")
 
