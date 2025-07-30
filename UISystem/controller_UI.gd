@@ -6,7 +6,7 @@ class_name UI
 var text: String
 
 @onready var skill_list: HBoxContainer = $UI/Control/SkillList
-@onready var option_button: OptionButton = $Control/OptionButton
+@onready var option_button: OptionButton = $UI_game/Control/OptionButton
 
 var config_path: String
 var UI_PLAYER = load(config_path)
@@ -17,15 +17,17 @@ func _ready_after():
 	path_sences = "res://UISystem/sences.cfg"
 	pass
 
-func _UI_EVENT(code: String, data)-> void:
+func _UI_EVENT(code: String, data: Variant)-> void:
 	if ("update_controller" == code):
 		movment_action_update(data)
 	elif ("update_minimap" == code):
 		update_minimap(data)
 	elif ("update_wether" == code):
 		update_wether(data)
+	elif ("game_status" == code):
+		game_status(data)
 	elif ("developer" == code):
-		developer_mode(data)
+		developer(data)
 		
 func _PLAYER_UPDATE(health: float, position: Vector2i) -> void:
 	pass
@@ -53,6 +55,10 @@ func _GAME_EVENT(id: int, position: Vector2i, node: Node) -> void:
 			addLabel(node)
 			pass
 	pass
+func _ENV_EVENT(text: String, data: Variant) -> void:
+	if ("update_wether" == code):
+		update_wether(data)
+	pass
 
 func addLabel(player: player_):
 	var player_id = player.get_instance_id()
@@ -68,26 +74,32 @@ func addLabel(player: player_):
 ##########################
 ####################所有的按钮方法
 ##########################
-func _visual_sacle(value: float) -> void:
-	G_Environment.set_visual_sacle(value)
-	pass
 
-func _movment_action_selected(index: int) -> void:
-	G_Environment.set_movment_action(index)
-	pass
+func movment_action_update(array) -> void:
+	if array:
+		for index in array.size():
+			option_button.add_item(array[index].code, index)
 
-func movment_action_update(array: Array) -> void:
-	for index in array.size():
-		option_button.add_item(array[index].code, index)
+func update_minimap(positions) -> void:
+	if positions:
+		$UI_game/Control/mini_map.update_texture(positions)
 
-func update_minimap(positions: PackedVector4Array) -> void:
-	$Control/mini_map.update_texture(positions)
+func update_wether(index: int) -> void:
+	$UI_game.update_wethers(index)
 
-func update_wether(array: Array) -> void:
-	for index in array.size():
-		var check = CheckButton.new()
+func game_status(status: int) -> void:
+	if 0:
+		#start page show
+		$UI_start.show()
+		$UI_game.hide()
+		$UI_developer.hide()
+	elif 1:
+		#game page show
+		$UI_start.hide()
+		$UI_game.show()
+		$UI_developer.hide()
 
-func developer_mode(display: bool) -> void:
+func developer(display: bool) -> void:
 	if display:
 		$UI_developer.show()
 	else:

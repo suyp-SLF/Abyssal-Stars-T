@@ -21,7 +21,7 @@ func _execute(delta: float) -> void:
 	for area in overlapping_areas:
 		#if ("entity" in area && area.entity.P_tag == "Player"):
 		if ("entity" in area):
-			print("当前重叠的 Area2D:", area.entity.position)
+			#print("当前重叠的 Area2D:", area.entity.position)
 			var position = Vector4(
 				(area.entity.position.x - char.position.x),
 				(area.entity.position.y - char.position.y),

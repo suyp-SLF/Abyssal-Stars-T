@@ -21,10 +21,10 @@ func _physics_process(delta: float) -> void:
 func update_texture(postions: PackedVector4Array):
 	var iter = 0
 	for vec in postions:
-		print("Element ", iter, ": ", vec)
+		#print("Element ", iter, ": ", vec)
 		image.set_pixel(iter, 0, Color(vec.x/2000, vec.y/2000, 0.02, 1.0))
 		iter += 1
-		print(vec.x / 1000, "  ", vec.y / 1000)
+		#print(vec.x / 1000, "  ", vec.y / 1000)
 	var new_texture = ImageTexture.create_from_image(image);
 	$"../color_map".texture = new_texture  # 重新赋值
 	# 4. 获取材质并设置 uniform

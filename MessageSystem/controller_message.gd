@@ -11,7 +11,7 @@ enum MessageType {
 	PLAYER_COMMAND,		# {velocity: Vector2, command: String}
 	MOUSE_EVENT,			# {type: String, position: Vector2}}
 	GAME_EVENT,        	# {"id, position, node"}
-	WETHER_EVENT
+	_ENV_EVENT
 }
 
 enum GAME_EVENT {
@@ -107,7 +107,7 @@ static func _validate_data(type: MessageType, data: Dictionary) -> bool:
 			valid = data.has("id") \
 			and data.has("position") \
 			and data.has("node")
-		MessageType.WETHER_EVENT:
+		MessageType._ENV_EVENT:
 			valid = data.has("code") \
 			and data.has("data")
 	
@@ -130,7 +130,7 @@ static func _get_required_fields(type: MessageType) -> String:
 			return "id, position, node"
 		MessageType.MOUSE_EVENT:
 			return "type, position"
-		MessageType.WETHER_EVENT:
+		MessageType._ENV_EVENT:
 			return "code, data"
 		_:
 			return "未知类型"

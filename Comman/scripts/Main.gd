@@ -12,11 +12,12 @@ func _ready() -> void:
 	G_Environment.CONTROLLER_PLAYER = %PlayerController
 	G_Environment.CONTROLLER_ENEMY = %EnemyController
 	G_Environment.CONTROLLER_INPUT = %InputController
-	pass
 	
 func start() -> void:
-	$UI/UI_game.visible = true
-	$UI/UI_start.visible = false
+	MessageSystem.send(MessageSystem.MessageType.UI_EVENT, {
+		"code": "game_status",
+		"data": 1
+	})
 	
 	print("user:// 的实际路径是: ", ProjectSettings.globalize_path("user://"))
 	

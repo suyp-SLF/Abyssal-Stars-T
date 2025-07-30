@@ -53,6 +53,10 @@ func _dispatcher(type: int, datas: Dictionary) -> void:
 			evt_position = datas["position"]
 			evt_node = datas["node"]
 			_GAME_EVENT(evt_id, evt_position, evt_node)
+		MessageSystem.MessageType._ENV_EVENT:
+			code = datas.get("code", "")
+			data = datas.get("data")
+			_ENV_EVENT(code, data)
 
 func _ready_after() -> void:
 	pass
@@ -65,6 +69,8 @@ func _PLAYER_COMMAND(command: MessageSystem.PLAYER_COMMAND, velocity: Vector2) -
 func _MOUSE_EVENT(type: String, position: Vector2) -> void:
 	pass
 func _GAME_EVENT(id: int, position: Vector2i, node: Node) -> void:
+	pass
+func _ENV_EVENT(text: String, data: Variant) -> void:
 	pass
 func set_path_config(path_config: String):
 	self.path_config = path_config

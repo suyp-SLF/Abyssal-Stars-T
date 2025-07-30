@@ -17,7 +17,7 @@ extends Node2D
 #扫描的实体
 @export var entity_postions: PackedVector4Array = []
 #天气
-@export var _wethers_array: Array[int] = []
+@export var wether_status: int = 0
 
 func controller_init() ->void:
 	pass
@@ -47,18 +47,18 @@ func set_character(charactor: character_) -> void:
 func get_character() -> character_:
 	return _character
 	
-func set_wether(wethers_array: Array[int]) -> void:
-	_wethers_array = wethers_array
-	MessageSystem.send(MessageSystem.MessageType.WETHER_EVENT, {
+func set_wether(wether_status: int) -> void:
+	self.wether_status = wether_status
+	MessageSystem.send(MessageSystem.MessageType._ENV_EVENT, {
 		"code": "update_wether",
-		"data": wethers_array
+		"data": wether_status
 	})
 	
 func set_entity(entity_postions: PackedVector4Array) -> void:
 	self.entity_postions = entity_postions
 	MessageSystem.send(MessageSystem.MessageType.UI_EVENT, {
 		"code": "update_minimap",
-		"json": entity_postions
+		"data": entity_postions
 	})
 	
 func get_entity() -> PackedVector4Array:
@@ -70,7 +70,7 @@ func update_charactor():
 	var actions = component.get_children(false)
 	MessageSystem.send(MessageSystem.MessageType.UI_EVENT, {
 		"code": "update_controller",
-		"json": actions
+		"data": actions
 	})
 	pass
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8v67q05tissk"]
 
 [ext_resource type="Script" uid="uid://b0ukjxi682qvh" path="res://UISystem/scripts/UI_player_button.gd" id="1_07jiq"]
-[ext_resource type="Theme" uid="uid://bpvprkvy2uy8a" path="res://UISystem/theme/theme.tres" id="2_qej0y"]
+[ext_resource type="Theme" uid="uid://bpvprkvy2uy8a" path="res://UISystem/theme/developer.tres" id="2_qej0y"]
 
 [node name="PlayerBtn" type="Button"]
 custom_minimum_size = Vector2(200, 200)
