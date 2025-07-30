@@ -3,3 +3,5 @@
 2. wether - rain
 add rain shader
 <img width="800" height="423" alt="image" src="https://github.com/user-attachments/assets/9a8bc6f9-8072-433a-89c2-fc3e71013cc8" />
+3. developer page
+<img width="368" height="504" alt="image" src="https://github.com/user-attachments/assets/4e5bad76-5351-4c6d-a680-ce0453b5dad8" />
