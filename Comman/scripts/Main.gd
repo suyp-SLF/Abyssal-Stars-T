@@ -24,7 +24,7 @@ func start() -> void:
 	var layer0: TileMapLayer = G_Environment.CONTROLLER_MAP.add_layer_by_num(0)
 	var layer1: TileMapLayer = G_Environment.CONTROLLER_MAP.add_layer_by_num(1)
 	var layer2: TileMapLayer = G_Environment.CONTROLLER_MAP.add_layer_by_num(2)
-	G_Environment.set_layer(layer0)
+	G_Environment.set_layer(layer2)
 	
 	layer0.update_internals()
 	var player1 = G_Environment.CONTROLLER_PLAYER.createPlayer("robot1" ,"normal", 0, Vector2i(0, 0))

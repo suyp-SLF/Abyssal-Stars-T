@@ -44,17 +44,17 @@ void fragment() {
         //float enemy1_strength = smoothstep(enemy1_size * 1.5, enemy1_size, length(UV - enemy1_pos));
         //enemy_blend = mix(enemy_blend, enemy1_color, enemy1_strength);
         //total_enemy_alpha = max(total_enemy_alpha, enemy1_strength * enemy1_color.a);
-		
+
 		// 然后在代码中:
 		for (int i = 0; i < detect_count; i++) {
 		    vec4 data = texelFetch(detect_data, ivec2(i, 0), 0);
 		    vec2 pos = vec2(0.5 + data.x, 0.5 + data.y);
 		    float size = data.z * 0.51;
 
-			float enemy_strength = smoothstep(size * 1.5, size, length(UV - pos));			
+			float enemy_strength = smoothstep(size * 1.5, size, length(UV - pos));
 			enemy_blend = mix(enemy_blend, enemy1_color, enemy_strength);
 			total_enemy_alpha = max(total_enemy_alpha, enemy_strength * enemy1_color.a);
-			
+
 		}
 
         // 组合所有效果

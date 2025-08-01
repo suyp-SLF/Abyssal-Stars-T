@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://ciovvt2xjx142"]
+[gd_scene load_steps=71 format=4 uid="uid://ciovvt2xjx142"]
 
 [ext_resource type="Script" uid="uid://byfjo2d33kpkp" path="res://Comman/scripts/Main.gd" id="1_3emcu"]
 [ext_resource type="Script" uid="uid://b5waj2e4wqtrx" path="res://UISystem/controller_UI.gd" id="2_l603a"]
@@ -36,6 +36,9 @@
 [ext_resource type="Script" uid="uid://4w5rnxd4otb0" path="res://UISystem/scripts/start.gd" id="32_f6k2u"]
 [ext_resource type="Script" uid="uid://bo14p18iyekkn" path="res://UISystem/scripts/developer.gd" id="35_pk2yg"]
 [ext_resource type="Theme" uid="uid://bpvprkvy2uy8a" path="res://UISystem/theme/developer.tres" id="36_vb7g5"]
+[ext_resource type="MeshLibrary" uid="uid://bdc01mya6w533" path="res://Ass/mesh/meshlib.meshlib" id="37_brb2x"]
+[ext_resource type="ArrayMesh" uid="uid://bsbfspc8txgf8" path="res://Ass/cars-0.obj" id="37_yy5r6"]
+[ext_resource type="Script" uid="uid://bputent85r5vd" path="res://Vehicle/vehicle_.gd" id="38_th1pk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f6k2u"]
 shader = ExtResource("28_pf7xi")
@@ -308,23 +311,29 @@ shader_parameter/enemy1_size = 0.005
 shader_parameter/enemy1_color = Vector4(1, 0, 0, 1)
 shader_parameter/detect_count = 1
 
-[node name="Main" type="Node2D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_th1pk"]
+size = Vector3(1.37024, 0.379456, 3.33984)
+
+[node name="Node" type="Node"]
+
+[node name="Main" type="Node2D" parent="."]
+visible = false
 script = ExtResource("1_3emcu")
 
-[node name="InputController" type="Node2D" parent="."]
+[node name="InputController" type="Node2D" parent="Main"]
 unique_name_in_owner = true
 script = ExtResource("4_13t6m")
 
-[node name="Environment" type="Node2D" parent="."]
+[node name="Environment" type="Node2D" parent="Main"]
 y_sort_enabled = true
 
-[node name="MouseController" type="Node2D" parent="Environment"]
+[node name="MouseController" type="Node2D" parent="Main/Environment"]
 unique_name_in_owner = true
 script = ExtResource("9_d8fua")
 
-[node name="Ring" type="Node2D" parent="Environment/MouseController"]
+[node name="Ring" type="Node2D" parent="Main/Environment/MouseController"]
 
-[node name="DrawRing" type="ColorRect" parent="Environment/MouseController/Ring"]
+[node name="DrawRing" type="ColorRect" parent="Main/Environment/MouseController/Ring"]
 z_index = 2
 material = SubResource("ShaderMaterial_f6k2u")
 offset_left = -50.0
@@ -333,29 +342,29 @@ offset_right = 50.0
 offset_bottom = 75.0
 scale = Vector2(1, 0.5)
 
-[node name="PlayerController" type="Node2D" parent="Environment"]
+[node name="PlayerController" type="Node2D" parent="Main/Environment"]
 unique_name_in_owner = true
 y_sort_enabled = true
 script = ExtResource("7_ace6p")
 
-[node name="EnemyController" type="Node2D" parent="Environment"]
+[node name="EnemyController" type="Node2D" parent="Main/Environment"]
 unique_name_in_owner = true
 script = ExtResource("9_rsc2q")
 
-[node name="Enemy" parent="Environment/EnemyController" instance=ExtResource("13_pf7xi")]
+[node name="Enemy" parent="Main/Environment/EnemyController" instance=ExtResource("13_pf7xi")]
 z_index = 1
 position = Vector2(308, -122)
 
-[node name="MapController" type="Node2D" parent="Environment"]
+[node name="MapController" type="Node2D" parent="Main/Environment"]
 unique_name_in_owner = true
 y_sort_enabled = true
 script = ExtResource("5_6t1ta")
 
-[node name="Background" type="TileMapLayer" parent="Environment/MapController"]
+[node name="Background" type="TileMapLayer" parent="Main/Environment/MapController"]
 tile_map_data = PackedByteArray("AABVAML/AQAFAAAAAABVAMP/AQAFAAAAAAA=")
 tile_set = ExtResource("6_j784c")
 
-[node name="Showground" type="TileMapLayer" parent="Environment/MapController"]
+[node name="Showground" type="TileMapLayer" parent="Main/Environment/MapController"]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -16)
@@ -363,95 +372,95 @@ tile_map_data = PackedByteArray("AAAFAPb/AQAEAAAAAAAGAPX/AQAEAAAAAAAGAPT/AQAEAAA
 tile_set = ExtResource("6_j784c")
 y_sort_origin = 1
 
-[node name="layer" type="TileMapLayer" parent="Environment/MapController"]
+[node name="layer" type="TileMapLayer" parent="Main/Environment/MapController"]
 tile_map_data = PackedByteArray("AAD9//z/BAAKAAAAAAD9//3/BAAKAAAAAAD9//7/BAAKAAAAAAD9////BAAKAAAAAAD9/wEABAAKAAAAAAD9/wIABAAKAAAAAAD9/wMABAAKAAAAAAD9/wQABAAKAAAAAAD9/wUABAAKAAAAAAD9/wYABAAKAAAAAAD+//z/BAAKAAAAAAD+//3/BAAKAAAAAAD+//7/BAAKAAAAAAD+////BAAKAAAAAAD+/wAABAAKAAAAAAD+/wEABAAKAAAAAAD+/wIABAAKAAAAAAD+/wMABAAKAAAAAAD+/wQABAAKAAAAAAD+/wUABAAKAAAAAAD+/wYABAAKAAAAAAD///z/BAAKAAAAAAD///3/BAAKAAAAAAD///7/BAAKAAAAAAD/////BAAKAAAAAAD//wAABAAKAAAAAAD//wEABAAKAAAAAAD//wIABAAKAAAAAAD//wMABAAKAAAAAAD//wQABAAKAAAAAAD//wUABAAKAAAAAAD//wYABAAKAAAAAAAAAPz/BAAKAAAAAAAAAP3/BAAKAAAAAAAAAP7/BAAKAAAAAAAAAP//BAAKAAAAAAAAAAAABAAKAAAAAAAAAAEABAAKAAAAAAAAAAIABAAKAAAAAAAAAAMABAAKAAAAAAAAAAQABAAKAAAAAAAAAAUABAAKAAAAAAAAAAYABAAKAAAAAAABAPz/BAAKAAAAAAABAP3/BAAKAAAAAAABAP7/BAAKAAAAAAABAP//BAAKAAAAAAABAAAABAAKAAAAAAABAAEABAAKAAAAAAABAAIABAAKAAAAAAABAAMABAAKAAAAAAABAAQABAAKAAAAAAABAAUABAAKAAAAAAABAAYABAAKAAAAAAACAPz/BAAKAAAAAAACAP3/BAAKAAAAAAACAP7/BAAKAAAAAAACAP//BAAKAAAAAAACAAAABAAKAAAAAAACAAEABAAKAAAAAAACAAIABAAKAAAAAAACAAMABAAKAAAAAAACAAQABAAKAAAAAAACAAUABAAKAAAAAAACAAYABAAKAAAAAAADAPz/BAAKAAAAAAADAP3/BAAKAAAAAAADAP7/BAAKAAAAAAADAP//BAAKAAAAAAADAAAABAAKAAAAAAADAAEABAAKAAAAAAADAAIABAAKAAAAAAADAAMABAAKAAAAAAADAAQABAAKAAAAAAADAAUABAAKAAAAAAADAAYABAAKAAAAAAAEAPz/BAAKAAAAAAAEAP3/BAAKAAAAAAAEAP7/BAAKAAAAAAAEAP//BAAKAAAAAAAEAAAABAAKAAAAAAAEAAEABAAKAAAAAAAEAAIABAAKAAAAAAAEAAMABAAKAAAAAAAEAAQABAAKAAAAAAAEAAUABAAKAAAAAAAEAAYABAAKAAAAAAD9/wAABAAKAAAAAAD9//j/BAAFAAEAAAD9//n/BAAFAAEAAAD+//j/BAAFAAEAAAD+//n/BAAFAAEAAAD///j/BAAFAAEAAAD///n/BAAFAAEAAAAAAPj/BAAFAAEAAAAAAPn/BAAFAAEAAAA=")
 tile_set = ExtResource("10_f6k2u")
 script = ExtResource("16_d8fua")
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Environment"]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Main/Environment"]
 energy = 0.08
 
-[node name="Background" type="Node2D" parent="Environment"]
+[node name="Background" type="Node2D" parent="Main/Environment"]
 z_index = -1
 
-[node name="ColorRect" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_ni732")
 offset_left = 16.0
 offset_top = -3215.0
 offset_right = 4062.0
 offset_bottom = 2162.0
 
-[node name="ColorRect3" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect3" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_4ghn5")
 offset_left = -359.0
 offset_top = 178.0
 offset_right = -187.0
 offset_bottom = 359.0
 
-[node name="ColorRect4" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect4" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_x6d7j")
 offset_left = -454.0
 offset_top = 215.0
 offset_right = -414.0
 offset_bottom = 255.0
 
-[node name="ColorRect5" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect5" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_d7t7n")
 offset_left = -169.0
 offset_top = 221.0
 offset_right = -129.0
 offset_bottom = 261.0
 
-[node name="ColorRect6" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect6" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_arhbe")
 offset_left = -442.0
 offset_top = 207.0
 offset_right = -402.0
 offset_bottom = 247.0
 
-[node name="ColorRect7" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect7" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_s73ar")
 offset_left = -441.0
 offset_top = 267.0
 offset_right = -401.0
 offset_bottom = 307.0
 
-[node name="ColorRect8" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect8" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_v50mu")
 offset_left = -518.0
 offset_top = 212.0
 offset_right = -478.0
 offset_bottom = 252.0
 
-[node name="ColorRect9" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect9" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_gfqxi")
 offset_left = -508.0
 offset_top = 281.0
 offset_right = -468.0
 offset_bottom = 321.0
 
-[node name="ColorRect10" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect10" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_fge3v")
 offset_left = -711.0
 offset_top = 218.0
 offset_right = -515.0
 offset_bottom = 309.0
 
-[node name="ColorRect11" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect11" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_jqumb")
 offset_left = -702.0
 offset_top = 304.0
 offset_right = -583.0
 offset_bottom = 430.0
 
-[node name="ColorRect12" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect12" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_pf7xi")
 offset_left = -515.0
 offset_top = 465.0
 offset_right = -477.0
 offset_bottom = 518.0
 
-[node name="ColorRect13" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect13" type="ColorRect" parent="Main/Environment/Background"]
 z_index = 9
 material = SubResource("ShaderMaterial_d8fua")
 offset_left = 67.0
@@ -461,35 +470,35 @@ offset_bottom = 183.0
 scale = Vector2(1, 0.5)
 color = Color(0, 0, 0, 0)
 
-[node name="ColorRect14" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect14" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_d2n4r")
 offset_left = -773.0
 offset_top = 43.0
 offset_right = -733.0
 offset_bottom = 83.0
 
-[node name="ColorRect15" type="ColorRect" parent="Environment/Background"]
+[node name="ColorRect15" type="ColorRect" parent="Main/Environment/Background"]
 material = SubResource("ShaderMaterial_1mtjm")
 offset_left = -104.0
 offset_top = 247.0
 offset_right = -64.0
 offset_bottom = 250.0
 
-[node name="BulletPool" type="Node2D" parent="Environment"]
+[node name="BulletPool" type="Node2D" parent="Main/Environment"]
 script = ExtResource("26_d2n4r")
 
-[node name="CameraController" type="Node2D" parent="."]
+[node name="CameraController" type="Node2D" parent="Main"]
 unique_name_in_owner = true
 script = ExtResource("12_qdqgx")
 
-[node name="UI" type="Node" parent="."]
+[node name="UI" type="Node" parent="Main"]
 script = ExtResource("2_l603a")
 
-[node name="UI_game" type="CanvasLayer" parent="UI"]
+[node name="UI_game" type="CanvasLayer" parent="Main/UI"]
 visible = false
 script = ExtResource("27_qrmdt")
 
-[node name="wether" type="Control" parent="UI/UI_game"]
+[node name="wether" type="Control" parent="Main/UI/UI_game"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -499,11 +508,12 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="None" type="ColorRect" parent="UI/UI_game/wether"]
+[node name="None" type="ColorRect" parent="Main/UI/UI_game/wether"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Rain" type="ColorRect" parent="UI/UI_game/wether"]
+[node name="Rain" type="ColorRect" parent="Main/UI/UI_game/wether"]
 material = SubResource("ShaderMaterial_f53ol")
 layout_mode = 1
 anchors_preset = 15
@@ -513,7 +523,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Control" type="Control" parent="UI/UI_game"]
+[node name="Control" type="Control" parent="Main/UI/UI_game"]
 material = SubResource("CanvasItemMaterial_5ej7w")
 layout_mode = 3
 anchors_preset = 15
@@ -522,7 +532,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="UI/UI_game/Control"]
+[node name="ColorRect" type="ColorRect" parent="Main/UI/UI_game/Control"]
 material = SubResource("ShaderMaterial_5cbny")
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
@@ -532,7 +542,7 @@ grow_horizontal = 2
 size_flags_vertical = 3
 color = Color(0, 0, 0, 0.451)
 
-[node name="ColorRect3" type="ColorRect" parent="UI/UI_game/Control"]
+[node name="ColorRect3" type="ColorRect" parent="Main/UI/UI_game/Control"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 1
 anchors_preset = 12
@@ -543,7 +553,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
-[node name="AlertPanel" type="RichTextLabel" parent="UI/UI_game/Control"]
+[node name="AlertPanel" type="RichTextLabel" parent="Main/UI/UI_game/Control"]
 layout_mode = 2
 offset_left = 1420.0
 offset_top = 27.0
@@ -552,7 +562,7 @@ offset_bottom = 27.0
 bbcode_enabled = true
 fit_content = true
 
-[node name="PlayerList" type="VBoxContainer" parent="UI/UI_game/Control"]
+[node name="PlayerList" type="VBoxContainer" parent="Main/UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -560,21 +570,21 @@ anchor_right = 1.0
 offset_bottom = 50.0
 grow_horizontal = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI_game/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/UI/UI_game/Control"]
 layout_mode = 1
 offset_right = 500.0
 offset_bottom = 66.0
 metadata/_edit_use_anchors_ = true
 
-[node name="layer0" type="Button" parent="UI/UI_game/Control/VBoxContainer"]
+[node name="layer0" type="Button" parent="Main/UI/UI_game/Control/VBoxContainer"]
 layout_mode = 2
 text = "layer0"
 
-[node name="layer1" type="Button" parent="UI/UI_game/Control/VBoxContainer"]
+[node name="layer1" type="Button" parent="Main/UI/UI_game/Control/VBoxContainer"]
 layout_mode = 2
 text = "layer1"
 
-[node name="SkillList" type="HBoxContainer" parent="UI/UI_game/Control"]
+[node name="SkillList" type="HBoxContainer" parent="Main/UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -583,13 +593,13 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="Button" parent="UI/UI_game/Control/SkillList" instance=ExtResource("4_2g28e")]
+[node name="Button" parent="Main/UI/UI_game/Control/SkillList" instance=ExtResource("4_2g28e")]
 layout_mode = 2
 
-[node name="Button2" parent="UI/UI_game/Control/SkillList" instance=ExtResource("4_2g28e")]
+[node name="Button2" parent="Main/UI/UI_game/Control/SkillList" instance=ExtResource("4_2g28e")]
 layout_mode = 2
 
-[node name="Water" type="ColorRect" parent="UI/UI_game/Control"]
+[node name="Water" type="ColorRect" parent="Main/UI/UI_game/Control"]
 material = SubResource("ShaderMaterial_k1ek1")
 layout_mode = 1
 anchors_preset = 3
@@ -602,7 +612,7 @@ offset_top = -200.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Fire" type="ColorRect" parent="UI/UI_game/Control"]
+[node name="Fire" type="ColorRect" parent="Main/UI/UI_game/Control"]
 visible = false
 material = SubResource("ShaderMaterial_dxmf3")
 layout_mode = 1
@@ -612,23 +622,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="mini_map" type="ColorRect" parent="UI/UI_game/Control"]
+[node name="mini_map" type="ColorRect" parent="Main/UI/UI_game/Control"]
 material = SubResource("ShaderMaterial_qrmdt")
 layout_mode = 1
 offset_right = 300.0
 offset_bottom = 300.0
 script = ExtResource("31_f6k2u")
 
-[node name="color_map" type="Sprite2D" parent="UI/UI_game/Control"]
+[node name="color_map" type="Sprite2D" parent="Main/UI/UI_game/Control"]
 texture = ExtResource("32_1mtjm")
 
-[node name="Label" type="Label" parent="UI/UI_game/Control"]
+[node name="Label" type="Label" parent="Main/UI/UI_game/Control"]
 layout_mode = 0
 offset_left = 195.0
 offset_right = 235.0
 offset_bottom = 23.0
 
-[node name="MenuButton" type="MenuButton" parent="UI/UI_game/Control"]
+[node name="MenuButton" type="MenuButton" parent="Main/UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.4
@@ -649,13 +659,13 @@ popup/item_1/checkable = 1
 popup/item_1/checked = true
 popup/item_1/id = 1
 
-[node name="CheckButton" type="CheckButton" parent="UI/UI_game/Control"]
+[node name="CheckButton" type="CheckButton" parent="Main/UI/UI_game/Control"]
 layout_mode = 0
 offset_left = 195.0
 offset_right = 239.0
 offset_bottom = 24.0
 
-[node name="OptionButton" type="OptionButton" parent="UI/UI_game/Control"]
+[node name="OptionButton" type="OptionButton" parent="Main/UI/UI_game/Control"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -668,7 +678,7 @@ offset_bottom = 10.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="DeveloperMode" type="Button" parent="UI/UI_game/Control"]
+[node name="DeveloperMode" type="Button" parent="Main/UI/UI_game/Control"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 1
@@ -679,10 +689,10 @@ offset_bottom = 91.0
 grow_horizontal = 0
 text = "开发者模式"
 
-[node name="UI_start" type="CanvasLayer" parent="UI"]
+[node name="UI_start" type="CanvasLayer" parent="Main/UI"]
 script = ExtResource("32_f6k2u")
 
-[node name="Control" type="Control" parent="UI/UI_start"]
+[node name="Control" type="Control" parent="Main/UI/UI_start"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -692,7 +702,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="start" type="Button" parent="UI/UI_start/Control"]
+[node name="start" type="Button" parent="Main/UI/UI_start/Control"]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 1
 anchors_preset = 8
@@ -708,11 +718,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start Game"
 
-[node name="UI_developer" type="CanvasLayer" parent="UI"]
+[node name="UI_developer" type="CanvasLayer" parent="Main/UI"]
 visible = false
 script = ExtResource("35_pk2yg")
 
-[node name="Mask" type="ColorRect" parent="UI/UI_developer"]
+[node name="Mask" type="ColorRect" parent="Main/UI/UI_developer"]
 custom_minimum_size = Vector2(600, 0)
 anchors_preset = 11
 anchor_left = 1.0
@@ -723,7 +733,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 color = Color(0, 0, 0, 0.901961)
 
-[node name="List" type="VBoxContainer" parent="UI/UI_developer"]
+[node name="List" type="VBoxContainer" parent="Main/UI/UI_developer"]
 custom_minimum_size = Vector2(600, 0)
 anchors_preset = 11
 anchor_left = 1.0
@@ -734,19 +744,19 @@ grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("36_vb7g5")
 
-[node name="Close" type="Button" parent="UI/UI_developer/List"]
+[node name="Close" type="Button" parent="Main/UI/UI_developer/List"]
 z_index = 99
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 text = "开发者模式"
 
-[node name="VisualSacle" type="HSlider" parent="UI/UI_developer/List"]
+[node name="VisualSacle" type="HSlider" parent="Main/UI/UI_developer/List"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="Wether" type="OptionButton" parent="UI/UI_developer/List"]
+[node name="Wether" type="OptionButton" parent="Main/UI/UI_developer/List"]
 layout_mode = 2
 item_count = 2
 popup/item_0/text = "无"
@@ -754,9 +764,58 @@ popup/item_0/id = 0
 popup/item_1/text = "下雨"
 popup/item_1/id = 1
 
-[connection signal="item_selected" from="UI/UI_game/Control/OptionButton" to="UI/UI_game" method="_movment_action_selected"]
-[connection signal="pressed" from="UI/UI_game/Control/DeveloperMode" to="UI/UI_game" method="developer_mode"]
-[connection signal="pressed" from="UI/UI_start/Control/start" to="UI/UI_start" method="_on_start_pressed"]
-[connection signal="pressed" from="UI/UI_developer/List/Close" to="UI/UI_developer" method="_close"]
-[connection signal="value_changed" from="UI/UI_developer/List/VisualSacle" to="UI/UI_developer" method="_visual_sacle"]
-[connection signal="item_selected" from="UI/UI_developer/List/Wether" to="UI/UI_developer" method="_wether_selected"]
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.571315, 0.820731, 0, -0.820731, 0.571315, 0, 8.59571, 0)
+
+[node name="Envi" type="Node3D" parent="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="Node3D/Envi"]
+mesh_library = ExtResource("37_brb2x")
+data = {
+"cells": PackedInt32Array(65526, 2, 0, 65527, 2, 0, 65527, 3, 0, 65528, 3, 0, -7, 65534, 524288, -6, 65534, 524288, -6, 65535, 524288, -6, 0, 524288, -5, 0, 524288, -5, 1, 524288, -4, 1, 524288, -4, 2, 524288, -3, 2, 524288, -2, 3, 524288, -1, 3, 524288, -65536, 1, 524288, -1, 1, 524288, -2, 1, 524288, -3, 1, 524288, -3, 0, 524288, -4, 0, 524288, -4, 65535, 524288, -4, 65534, 655360, -4, 65533, 524288, -5, 65532, 655360, -5, 65531, 655360, -6, 65531, 655360, -5, 65533, 524288, -3, 65534, 524288, -2, 65534, 524288, -1, 65534, 524288, -65536, 65534, 524288, -65536, 65535, 524288, -65536, 0, 524288, -1, 0, 524288, -2, 2, 524288, -1, 2, 524288, -1, 65532, 524288, -2, 65531, 524288, -3, 65530, 524288, -4, 65530, 524288, -5, 65530, 655360, -6, 65532, 655360, -6, 65533, 524288, -6, 65529, 524288, -6, 65526, 655360, -6, 65523, 655360, -5, 65521, 655360, -4, 65521, 655360, -3, 65522, 655360, -2, 65523, 655360, -1, 65526, 655360, -65536, 65527, 655360, -65536, 65529, 655360, -65536, 65531, 524288, -65536, 65532, 524288, -65536, 65533, 524288, -1, 65533, 524288, -2, 65533, 524288, -3, 65533, 524288, -5, 65534, 524288, -4, 65529, 524288, -4, 65527, 655360, -4, 65528, 655360, -4, 65532, 524288, -5, 65535, 524288, -3, 6, 524288, -2, 6, 524288, -2, 5, 524288, -1, 5, 524288, -1, 4, 524288, -65536, 2, 524288, -65535, 65535, 524288, -65535, 0, 524288, -2, 4, 524288, -2, 0, 524288, -3, 3, 524288, -6, 4, 524288, -7, 4, 524288, -7, 3, 524288, -8, 3, 524288, -8, 2, 524288, -7, 1, 524288, -6, 2, 524288, -6, 3, 524288, -5, 3, 524288, -4, 3, 524288, -4, 4, 524288, -3, 4, 524288, -65536, 3, 524288, -3, 65535, 524288, -65535, 1, 524288, -65535, 2, 524288, -5, 2, 524288, -6, 1, 524288, -9, 1, 524288, -9, 0, 524288, -9, 65535, 524288, -8, 65535, 524288, -7, 65535, 524288, -7, 0, 524288, -3, 5, 524288, -4, 5, 524288, -5, 4, 524288, -8, 65530, 524288, -10, 65528, 524288, -12, 65526, 524288, -13, 65525, 524288, -14, 65524, 524288, -13, 65526, 524288, -11, 65528, 524288, -11, 65529, 524288, -10, 65531, 524288, -9, 65531, 524288, -8, 65533, 524288, -8, 65534, 524288, -8, 0, 524288, -65536, 4, 524288, -65536, 5, 524288, -65536, 6, 524288, -65536, 7, 524288, -1, 7, 524288, -2, 7, 524288, -4, 6, 524288, -5, 6, 524288, -6, 6, 524288, -6, 5, 524288, -7, 5, 524288, -7, 6, 524288, -8, 6, 524288, -8, 5, 524288, -9, 5, 524288, -9, 4, 524288, -9, 3, 524288, -9, 2, 524288, -8, 1, 524288, -65535, 65534, 524288, -65534, 65534, 524288, -65533, 65533, 524288, -65533, 65534, 524288, -65534, 65533, 524288, -1, 65531, 524288, -3, 65531, 524288, -4, 65531, 524288, -3, 65529, 524288, -2, 65528, 524288, -2, 65529, 524288, -2, 65530, 524288, -3, 65532, 524288, -2, 65532, 524288, -65534, 65535, 524288, -65534, 0, 524288, -65533, 0, 524288, -65534, 1, 524288, -65533, 1, 524288, -65532, 0, 524288, -65532, 65535, 524288, -65533, 2, 524288, -65533, 3, 524288, -65534, 4, 524288, -65534, 3, 524288, -65533, 4, 524288, -65534, 5, 524288, -65535, 6, 524288, -65535, 5, 524288, -1, 6, 524288, -5, 5, 524288, -5, 7, 524288, -6, 7, 524288, -7, 7, 524288, -6, 8, 524288, -8, 7, 524288, -9, 6, 524288, -4, 7, 524288, -3, 7, 524288, -1, 65535, 524288, -5, 65529, 524288, -7, 65529, 524288, -8, 65529, 524288, -9, 65530, 524288, -10, 65532, 524288, -9, 65533, 524288, -9, 65534, 524288)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="Character" type="Node3D" parent="Node3D"]
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="Node3D/Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.28788, 0)
+script = ExtResource("38_th1pk")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/Character/VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.840869, 0.541239, 0, -0.541239, 0.840869, -4.08991, 2.85387, 7.33692)
+current = true
+
+[node name="Cars-1" type="MeshInstance3D" parent="Node3D/Character/VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18932, 0.385578, 4.77776)
+mesh = ExtResource("37_yy5r6")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Character/VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.15868, 1.19536, 4.75378)
+shape = SubResource("BoxShape3D_th1pk")
+
+[node name="FrontLeft" type="VehicleWheel3D" parent="Node3D/Character/VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.88034, 0.762265, 3.71082)
+wheel_radius = 0.2
+
+[node name="FrontRight" type="VehicleWheel3D" parent="Node3D/Character/VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.42959, 0.701966, 3.71506)
+wheel_radius = 0.2
+
+[node name="RearLeft" type="VehicleWheel3D" parent="Node3D/Character/VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.80297, 0.743362, 5.7083)
+wheel_radius = 0.2
+
+[node name="RearRight" type="VehicleWheel3D" parent="Node3D/Character/VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50268, 0.677329, 5.65907)
+wheel_radius = 0.2
+
+[connection signal="item_selected" from="Main/UI/UI_game/Control/OptionButton" to="Main/UI/UI_game" method="_movment_action_selected"]
+[connection signal="pressed" from="Main/UI/UI_game/Control/DeveloperMode" to="Main/UI/UI_game" method="developer_mode"]
+[connection signal="pressed" from="Main/UI/UI_start/Control/start" to="Main/UI/UI_start" method="_on_start_pressed"]
+[connection signal="pressed" from="Main/UI/UI_developer/List/Close" to="Main/UI/UI_developer" method="_close"]
+[connection signal="value_changed" from="Main/UI/UI_developer/List/VisualSacle" to="Main/UI/UI_developer" method="_visual_sacle"]
+[connection signal="item_selected" from="Main/UI/UI_developer/List/Wether" to="Main/UI/UI_developer" method="_wether_selected"]
