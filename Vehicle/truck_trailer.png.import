@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kn5w0ild41ll"
-path.s3tc="res://.godot/imported/cars-0.png-8a92014f3e0b2be43dcfbf19a5b8d000.s3tc.ctex"
+uid="uid://q7uvsiqefkwr"
+path="res://.godot/imported/truck_trailer.png-705b0207eaff5987275f268501bcfadd.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ass/cars-0.png"
-dest_files=["res://.godot/imported/cars-0.png-8a92014f3e0b2be43dcfbf19a5b8d000.s3tc.ctex"]
+source_file="res://Vehicle/truck_trailer.png"
+dest_files=["res://.godot/imported/truck_trailer.png-705b0207eaff5987275f268501bcfadd.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
