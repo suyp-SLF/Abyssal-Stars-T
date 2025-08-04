@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c1uai3rvx8hul"]
+[gd_scene load_steps=21 format=3 uid="uid://c1uai3rvx8hul"]
 
 [ext_resource type="Script" uid="uid://bm05kkewbh4hb" path="res://Vehicle/vehicle.gd" id="1_r806m"]
 [ext_resource type="Texture2D" uid="uid://d4ostmqwgytk" path="res://Vehicle/particle_smoke.png" id="2_1gkvk"]
@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://sun2n8a4xapl" path="res://Vehicle/impact_3.wav" id="8_mh5uv"]
 [ext_resource type="AudioStream" uid="uid://dpbayeeufya21" path="res://Vehicle/impact_4.wav" id="9_bomp1"]
 [ext_resource type="Texture2D" uid="uid://bju75l2w3r7vq" path="res://Vehicle/blob_shadow.png" id="11_3ryw5"]
+[ext_resource type="Script" uid="uid://ceehayh1rltkl" path="res://Vehicle/point.gd" id="12_qnvh3"]
+[ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="13_qgwie"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l7i2k"]
 friction = 0.5
@@ -122,6 +124,7 @@ gi_mode = 2
 mesh = ExtResource("2_3cqaw")
 
 [node name="Body" type="MeshInstance3D" parent="Body"]
+visible = false
 layers = 2
 gi_mode = 2
 mesh = ExtResource("3_cqia8")
@@ -185,3 +188,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.9
 
 [node name="TopDownCameraPosition" type="Marker3D" parent="Body"]
 transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0.00169557, 15.7771, 0.0955178)
+
+[node name="Point" type="Marker3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00169557, 1.40073, 0.0955184)
+script = ExtResource("12_qnvh3")
+
+[node name="RayCast3D" type="RayCast3D" parent="Body/Point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27461, 0)
+target_position = Vector3(0, -10, 0)
+
+[node name="RangeDecal" type="Decal" parent="Body/Point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.48408, 0)
+texture_albedo = ExtResource("13_qgwie")

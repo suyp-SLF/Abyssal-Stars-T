@@ -13,5 +13,5 @@ func _process(delta: float) -> void:
 
 
 func _on_start_pressed() -> void:
-	$"../..".start()
+	#$"../..".start()
 	pass # Replace with function body.
