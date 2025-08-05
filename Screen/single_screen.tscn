@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=4 uid="uid://iplu5t45g2qn"]
+
+[ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="1_fkh5t"]
+[ext_resource type="Script" uid="uid://dtpnfibxvb0i7" path="res://Screen/script/screen.gd" id="2_81cgq"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hh0ds"]
+_surfaces = [{
+"2d": true,
+"aabb": AABB(0, 0, 0, 1e-05, 1e-05, 0),
+"attribute_data": PackedByteArray("/////wAAAAAAAIA//////wAAgD8AAAAA/////wAAAAAAAAAA/////wAAAAAAAIA//////wAAgD8AAAAA/////wAAgD8AAIA/"),
+"format": 34393292825,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+}]
+
+[node name="singleScreen" type="MeshInstance2D"]
+mesh = SubResource("ArrayMesh_hh0ds")
+texture = ExtResource("1_fkh5t")
+script = ExtResource("2_81cgq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -139.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "RichTextLabel is a flexible way of adding text to your project, with support for [i]italics[/i], [b]bold[/b] and [i][b]both[/b][/i].
+[u]Underline[/u] and [s]strikethrough[/s] work too, including with [u][i]italics[/i][/u], [u][b]bold[/b][/u] and [u][i][b]both[/b][/i][/u].
+
+Text [color=#4cf]color[/color], [fgcolor=#49c9]foreground [color=#4cf]color[/color][/fgcolor]  and  [bgcolor=#49c9]background [color=#4cf]color[/color][/bgcolor]  can be adjusted.
+
+It's also possible to include [img]res://unicorn_icon.png[/img] [font_size=24]custom images[/font_size], as well as [color=aqua][url=https://godotengine.org]custom URLs[/url][/color]. [hint=This displays a hint.]Hover this to display a tooltip![/hint]
+Left alignment is default,[center]but center alignment is supported,[/center][right]as well as right alignment.[/right]
+
+[fill][dropcap font_size=48 color=yellow margins=0,-10,0,-12]F[/dropcap]ill alignment is also supported, and allows writing very long text that will end up fitting the horizontal space entirely with words of joy. Drop caps are also supported. When using a drop cap, the first character of a paragraph is made larger, taking up several lines of text and optionally using a specific font or color.[/fill]
+
+Several effects are also available:    [pulse]Pulse[/pulse]    [wave]Wave[/wave]    [tornado]Tornado[/tornado]    [shake]Shake[/shake]    [fade start=75 length=7]Fade[/fade]    [rainbow]Rainbow[/rainbow]
+
+[table=2]
+[cell border=#fff3 bg=#fff1]
+[ul]
+Tables
+are supported.
+[/ul]
+[/cell]
+[cell border=#fc13 bg=#fc11]
+[ol]
+Ordered
+list example.
+[/ol]
+[/cell]
+
+[/table]
+
+You can also create custom tags/effects, or customize behavior of [lb]url[rb] tags on click. For full reference, [color=aqua][url=https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html]check the documentation.[/url][/color]
+
+"
+scroll_following = true
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="Control"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0
