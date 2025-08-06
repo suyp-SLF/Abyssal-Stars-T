@@ -311,7 +311,7 @@ shader_parameter/enemy1_size = 0.005
 shader_parameter/enemy1_color = Vector4(1, 0, 0, 1)
 shader_parameter/detect_count = 1
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_oabq4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_th1pk"]
 _surfaces = [{
 "2d": true,
 "aabb": AABB(0, 0, 0, 1e-05, 1e-05, 0),
@@ -702,7 +702,7 @@ text = "开发者模式"
 
 [node name="singleScreen" parent="Main/UI/UI_game/Control" instance=ExtResource("28_th1pk")]
 position = Vector2(514, 265)
-mesh = SubResource("ArrayMesh_oabq4")
+mesh = SubResource("ArrayMesh_th1pk")
 
 [node name="UI_start" type="CanvasLayer" parent="Main/UI"]
 script = ExtResource("32_f6k2u")

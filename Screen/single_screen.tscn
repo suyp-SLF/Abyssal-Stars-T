@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="1_fkh5t"]
 [ext_resource type="Script" uid="uid://dtpnfibxvb0i7" path="res://Screen/script/screen.gd" id="2_81cgq"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_hh0ds"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4smsr"]
 _surfaces = [{
 "2d": true,
 "aabb": AABB(0, 0, 0, 1e-05, 1e-05, 0),
@@ -16,7 +16,7 @@ _surfaces = [{
 }]
 
 [node name="singleScreen" type="MeshInstance2D"]
-mesh = SubResource("ArrayMesh_hh0ds")
+mesh = SubResource("ArrayMesh_4smsr")
 texture = ExtResource("1_fkh5t")
 script = ExtResource("2_81cgq")
 
