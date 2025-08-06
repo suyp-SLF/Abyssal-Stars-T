@@ -10,7 +10,7 @@ var camera_total : Array
 @onready var sigin_center = $"../SiginCenter"
 
 
-const SINGLE_SCREEN = preload("res://scences/screen/single_screen.tscn")
+const SINGLE_SCREEN = preload("res://Screen/single_screen.tscn")
 
 var screen_btns:Array = [{"name": "console", "type": "console", "node": null, "enable": true}]
 var screens:Array

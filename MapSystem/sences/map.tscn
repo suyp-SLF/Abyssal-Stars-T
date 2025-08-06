@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://ciovvt2xjx142"]
+[gd_scene load_steps=70 format=4 uid="uid://ciovvt2xjx142"]
 
 [ext_resource type="Script" uid="uid://byfjo2d33kpkp" path="res://Comman/scripts/Main.gd" id="1_3emcu"]
 [ext_resource type="Script" uid="uid://b5waj2e4wqtrx" path="res://UISystem/controller_UI.gd" id="2_l603a"]
@@ -30,7 +30,6 @@
 [ext_resource type="Shader" uid="uid://d2mrjdu06kl6b" path="res://Shader/height_line.gdshader" id="27_fge3v"]
 [ext_resource type="Script" uid="uid://bvydc34pna3w6" path="res://UISystem/scripts/wether.gd" id="27_qrmdt"]
 [ext_resource type="Shader" uid="uid://d2f0b81ohxaae" path="res://Shader/circle.gdshader" id="28_pf7xi"]
-[ext_resource type="PackedScene" uid="uid://iplu5t45g2qn" path="res://Screen/single_screen.tscn" id="28_th1pk"]
 [ext_resource type="Shader" uid="uid://dxxkjqeoy3yj2" path="res://Shader/ring.gdshader" id="29_jqumb"]
 [ext_resource type="Script" uid="uid://dnymn0slxn3sy" path="res://MapSystem/sences/little_map.gd" id="31_f6k2u"]
 [ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="32_1mtjm"]
@@ -311,18 +310,6 @@ shader_parameter/enemy1_size = 0.005
 shader_parameter/enemy1_color = Vector4(1, 0, 0, 1)
 shader_parameter/detect_count = 1
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_oabq4"]
-_surfaces = [{
-"2d": true,
-"aabb": AABB(0, 0, 0, 1e-05, 1e-05, 0),
-"attribute_data": PackedByteArray("/////wAAAAAAAIA//////wAAgD8AAAAA/////wAAAAAAAAAA/////wAAAAAAAIA//////wAAgD8AAAAA/////wAAgD8AAIA/"),
-"format": 34393292825,
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-}]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_th1pk"]
 albedo_texture = ExtResource("37_brb2x")
 
@@ -507,6 +494,7 @@ script = ExtResource("12_qdqgx")
 script = ExtResource("2_l603a")
 
 [node name="UI_game" type="CanvasLayer" parent="Main/UI"]
+follow_viewport_enabled = true
 script = ExtResource("27_qrmdt")
 
 [node name="wether" type="Control" parent="Main/UI/UI_game"]
@@ -699,10 +687,6 @@ offset_left = -88.0
 offset_bottom = 91.0
 grow_horizontal = 0
 text = "开发者模式"
-
-[node name="singleScreen" parent="Main/UI/UI_game/Control" instance=ExtResource("28_th1pk")]
-position = Vector2(514, 265)
-mesh = SubResource("ArrayMesh_oabq4")
 
 [node name="UI_start" type="CanvasLayer" parent="Main/UI"]
 script = ExtResource("32_f6k2u")
