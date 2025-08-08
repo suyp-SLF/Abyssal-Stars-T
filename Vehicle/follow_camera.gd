@@ -35,6 +35,7 @@ enum CameraType {
 
 func _ready():
 	update_camera()
+	G_Environment.set_camera(self)
 
 
 func _input(event):

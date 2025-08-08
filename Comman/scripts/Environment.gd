@@ -11,13 +11,18 @@ extends Node2D
 
 @export var layer: layer_ = null
 @export var _character: character_ = null
-@export var camera: Camera2D = null
+@export var cameras:Array = []
 #移动信息
 @export var movement_action: int = 0
 #扫描的实体
 @export var entity_postions: PackedVector4Array = []
 #天气
 @export var wether_status: int = 0
+
+signal Screen
+signal Camera
+signal Action
+signal Mouse
 
 func controller_init() ->void:
 	pass
@@ -74,12 +79,19 @@ func update_charactor():
 	})
 	pass
 
-func set_camera(camera: Camera2D) -> void:
-	CONTROLLER_CAMERA.set_camera()
-	self.camera = camera
+func set_camera(camera: Camera3D) -> void:
+	cameras.push_back(camera)
+	Camera.emit(cameras)
 	
-func get_camera() -> Camera2D:
-	return camera
+func get_cameras() -> Array:
+	return cameras
+
+########屏幕节点
+func _screen_receive(nodes: Array, old, new) -> void:
+	nodes.clear()
+	nodes.push_back(self)
+	Screen.emit(nodes, old, new)
+	pass
 	
 func get_mouse_position_visual() -> Vector2:
 	return get_global_mouse_position()

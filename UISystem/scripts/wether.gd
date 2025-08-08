@@ -13,6 +13,7 @@ var json
 var screen_btns:Array = [{"name": "console", "type": "console", "node": null, "enable": true}]
 
 
+
 func _init():
 	print("_init: ", "SCREEN")
 	var file = FileAccess.open("res://Screen/script/screens.json", FileAccess.READ)
@@ -26,9 +27,18 @@ func _init():
 		
 	screen_config()
 
+func _ready() -> void:
+	for index in range(json.size()):
+		screens[index].connect("Screen", Callable(G_Environment, "_screen_receive"))
+		screens[index].connect("Action", Callable(G_Environment, "_action_receive"))
+		
+		G_Environment.connect("Screen", Callable(screens[index], "_screen_transmit"))
+		G_Environment.connect("Mouse", Callable(screens[index], "_mouse_transmit"))
+	pass
+
 func screen_config():
 	print("_enter_tree: ", self.name)
-	var win_size = Vector2(1200, 1000)
+	var win_size = Vector2(1800, 1000)
 	var position_x = 0
 	for index in range(json.size()):
 		var name = json[index].get("name")
@@ -45,9 +55,6 @@ func screen_config():
 		screens[index].screens = screen_btns
 		position_x += win_size.x * width
 	pass
-
-func _ready() -> void:
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

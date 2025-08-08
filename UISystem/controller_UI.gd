@@ -15,6 +15,8 @@ var UI_PLAYER = load(config_path)
 func _ready_after():
 	controller_code = "UI"
 	path_sences = "res://UISystem/sences.cfg"
+	#连接摄像机信号
+	G_Environment.connect("Camera", Callable(self, "_update_cameras"))
 	pass
 
 func _UI_EVENT(code: String, data: Variant)-> void:
@@ -104,3 +106,6 @@ func developer(display: bool) -> void:
 		$UI_developer.show()
 	else:
 		$UI_developer.hide()
+
+func update_cameras(data: Array) -> void:
+	pass

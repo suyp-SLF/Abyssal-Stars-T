@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://ciovvt2xjx142"]
+[gd_scene load_steps=70 format=4 uid="uid://ciovvt2xjx142"]
 
 [ext_resource type="Script" uid="uid://byfjo2d33kpkp" path="res://Comman/scripts/Main.gd" id="1_3emcu"]
 [ext_resource type="Script" uid="uid://b5waj2e4wqtrx" path="res://UISystem/controller_UI.gd" id="2_l603a"]
@@ -30,7 +30,6 @@
 [ext_resource type="Shader" uid="uid://d2mrjdu06kl6b" path="res://Shader/height_line.gdshader" id="27_fge3v"]
 [ext_resource type="Script" uid="uid://bvydc34pna3w6" path="res://UISystem/scripts/wether.gd" id="27_qrmdt"]
 [ext_resource type="Shader" uid="uid://d2f0b81ohxaae" path="res://Shader/circle.gdshader" id="28_pf7xi"]
-[ext_resource type="PackedScene" uid="uid://iplu5t45g2qn" path="res://Screen/single_screen.tscn" id="28_th1pk"]
 [ext_resource type="Shader" uid="uid://dxxkjqeoy3yj2" path="res://Shader/ring.gdshader" id="29_jqumb"]
 [ext_resource type="Script" uid="uid://dnymn0slxn3sy" path="res://MapSystem/sences/little_map.gd" id="31_f6k2u"]
 [ext_resource type="Texture2D" uid="uid://c38sx4p64pbav" path="res://icon.svg" id="32_1mtjm"]
@@ -311,18 +310,6 @@ shader_parameter/enemy1_size = 0.005
 shader_parameter/enemy1_color = Vector4(1, 0, 0, 1)
 shader_parameter/detect_count = 1
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_th1pk"]
-_surfaces = [{
-"2d": true,
-"aabb": AABB(0, 0, 0, 1e-05, 1e-05, 0),
-"attribute_data": PackedByteArray("/////wAAAAAAAIA//////wAAgD8AAAAA/////wAAAAAAAAAA/////wAAAAAAAIA//////wAAgD8AAAAA/////wAAgD8AAIA/"),
-"format": 34393292825,
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-}]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_th1pk"]
 albedo_texture = ExtResource("37_brb2x")
 
@@ -510,6 +497,7 @@ script = ExtResource("2_l603a")
 script = ExtResource("27_qrmdt")
 
 [node name="wether" type="Control" parent="Main/UI/UI_game"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -535,6 +523,7 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Control" type="Control" parent="Main/UI/UI_game"]
+visible = false
 material = SubResource("CanvasItemMaterial_5ej7w")
 layout_mode = 3
 anchors_preset = 15
@@ -700,14 +689,11 @@ offset_bottom = 91.0
 grow_horizontal = 0
 text = "开发者模式"
 
-[node name="singleScreen" parent="Main/UI/UI_game/Control" instance=ExtResource("28_th1pk")]
-position = Vector2(514, 265)
-mesh = SubResource("ArrayMesh_th1pk")
-
 [node name="UI_start" type="CanvasLayer" parent="Main/UI"]
+visible = false
 script = ExtResource("32_f6k2u")
 
-[node name="Control" type="Control" parent="Main/UI/UI_start"]
+[node name="Start" type="Control" parent="Main/UI/UI_start"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -717,7 +703,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="start" type="Button" parent="Main/UI/UI_start/Control"]
+[node name="start" type="Button" parent="Main/UI/UI_start/Start"]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 1
 anchors_preset = 8
@@ -799,7 +785,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0374727, 0.655491, -0.0887
 
 [connection signal="item_selected" from="Main/UI/UI_game/Control/OptionButton" to="Main/UI/UI_game" method="_movment_action_selected"]
 [connection signal="pressed" from="Main/UI/UI_game/Control/DeveloperMode" to="Main/UI/UI_game" method="developer_mode"]
-[connection signal="pressed" from="Main/UI/UI_start/Control/start" to="Main/UI/UI_start" method="_on_start_pressed"]
+[connection signal="pressed" from="Main/UI/UI_start/Start/start" to="Main/UI/UI_start" method="_on_start_pressed"]
 [connection signal="pressed" from="Main/UI/UI_developer/List/Close" to="Main/UI/UI_developer" method="_close"]
 [connection signal="value_changed" from="Main/UI/UI_developer/List/VisualSacle" to="Main/UI/UI_developer" method="_visual_sacle"]
 [connection signal="item_selected" from="Main/UI/UI_developer/List/Wether" to="Main/UI/UI_developer" method="_wether_selected"]
