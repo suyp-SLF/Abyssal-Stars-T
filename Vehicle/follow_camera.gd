@@ -26,6 +26,8 @@ var desired_fov := fov
 # Position on the last physics frame (used to measure speed).
 var previous_position := global_position
 
+signal Camera
+
 enum CameraType {
 	EXTERIOR,
 	INTERIOR,
@@ -35,8 +37,6 @@ enum CameraType {
 
 func _ready():
 	update_camera()
-	G_Environment.set_camera(self)
-
 
 func _input(event):
 	if event.is_action_pressed(&"cycle_camera"):

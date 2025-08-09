@@ -32,6 +32,10 @@ G_Environment="*res://Comman/scripts/Environment.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[dotnet]
+
+project/assembly_name="Abyssal Stars"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

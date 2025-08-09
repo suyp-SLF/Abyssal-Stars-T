@@ -78,15 +78,13 @@ func update_charactor():
 		"data": actions
 	})
 	pass
-
-func set_camera(camera: Camera3D) -> void:
+#######摄像机信号
+func _camera_receive(camera: Camera3D) -> void:
 	cameras.push_back(camera)
 	Camera.emit(cameras)
-	
-func get_cameras() -> Array:
-	return cameras
+#######摄像机信号
 
-########屏幕节点
+########屏幕信号
 func _screen_receive(nodes: Array, old, new) -> void:
 	nodes.clear()
 	nodes.push_back(self)
